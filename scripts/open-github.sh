@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd "$(tmux display-message -p "#{pane_start_path}")" || exit
+cd "$(tmux display-message -p "#{pane_current_path}")" || exit
 url="$(git remote get-url origin)"
 
 if [[ $url == *github.com* ]]; then
@@ -15,4 +15,3 @@ if [[ $url == *github.com* ]]; then
 else
     echo "This repo is not hosted on github"
 fi
-

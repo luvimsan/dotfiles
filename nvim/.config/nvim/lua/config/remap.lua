@@ -2,7 +2,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 -- improvements
-vim.keymap.set("n", "<leader>e", [[:! ]], { silent = false })
 vim.keymap.set({ "n", "i" }, "<C-b>", "<Esc>:t.<CR>", { silent = false })
 
 -- toggling cmds
@@ -34,10 +33,10 @@ vim.keymap.set("n", "<leader>sv", "<C-w>v")
 vim.keymap.set("n", "<leader>sh", "<C-w>s")
 
 -- Buffer navigation
-vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { silent = true })
-vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { silent = true })
-vim.keymap.set("n", "<leader>bl", ":e #<CR>", { silent = true })
-vim.keymap.set("n", "<leader>b;", ":bp | bd #<CR>", { silent = true })
+vim.keymap.set("n", "<leader>tn", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "<leader>tp", ":bprevious<CR>", { silent = true })
+vim.keymap.set("n", "<leader>te", ":e #<CR>", { silent = true })
+vim.keymap.set("n", "<leader>tq", ":bp | bd #<CR>", { silent = true })
 
 -- tabs
 vim.keymap.set("n", "<leader>.", ":+tabmove<CR>", { silent = true })
@@ -62,7 +61,6 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ts<CR>")
 
 -- remove idiotic keys
@@ -84,15 +82,15 @@ vim.keymap.set("n", "<localleader>et", "<cmd>CompetiTest edit_testcase<CR>")
 -- run lua inline
 vim.keymap.set("n", "<leader>l", "<cmd> source %<CR>")
 vim.keymap.set("v", "<leader>l", ":lua<CR>")
+vim.keymap.set("n", "<localleader>h", ":Compile<CR>")
 
-vim.keymap.set("n", "<leader>cd", function()
-  if vim.bo.filetype == "oil" then
-    vim.cmd("lcd " .. vim.fn.fnameescape(require("oil").get_current_dir()))
-  elseif vim.fn.expand("%:p:h") ~= "" then
-    vim.cmd("lcd " .. vim.fn.fnameescape(vim.fn.expand("%:p:h")))
-  end
+vim.keymap.set("n", "<leader>d", function()
+    if vim.bo.filetype == "oil" then
+        vim.cmd("lcd " .. vim.fn.fnameescape(require("oil").get_current_dir()))
+    elseif vim.fn.expand("%:p:h") ~= "" then
+        vim.cmd("lcd " .. vim.fn.fnameescape(vim.fn.expand("%:p:h")))
+    end
 end)
-
 
 vim.keymap.set("n", "<leader>m", function()
     local winids = vim.api.nvim_list_wins()
@@ -108,11 +106,11 @@ vim.keymap.set("n", "<leader>m", function()
 end)
 
 vim.keymap.set("n", "<leader>tm", function()
-	local cmp = require("cmp")
-	local cfg = cmp.get_config().enabled
-	local state = not (type(cfg) == "function" and cfg() or cfg)
-	require("cmp").setup.buffer({ enabled = state })
-	print("Autocomplete " .. (state and "enabled" or "disabled"))
+    local cmp = require("cmp")
+    local cfg = cmp.get_config().enabled
+    local state = not (type(cfg) == "function" and cfg() or cfg)
+    require("cmp").setup.buffer({ enabled = state })
+    print("Autocomplete " .. (state and "enabled" or "disabled"))
 end)
 
 -- toggle fugitive
@@ -132,33 +130,64 @@ vim.keymap.set("n", "<leader>gs", toggle_fugitive)
 
 --quickfix
 vim.keymap.set("n", "<leader>q", function()
-	if vim.fn.getqflist({ winid = 0 }).winid > 0 then
-		vim.cmd("cclose")
-	else
-		vim.cmd("copen")
-	end
+    if vim.fn.getqflist({ winid = 0 }).winid > 0 then
+        vim.cmd("cclose")
+    else
+        vim.cmd("copen")
+    end
 end)
 
--- terminal navigation
-local term_buf = nil
-vim.keymap.set("n", "<leader>o", function()
-	if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
-		local win = vim.fn.bufwinid(term_buf)
-		if win ~= -1 then
-			vim.api.nvim_win_close(win, true)
-			return
-		end
-	end
-	vim.cmd("botright 9split | terminal")
-	term_buf = vim.api.nvim_get_current_buf()
-	vim.cmd("startinsert")
-end)
+-- terminal navigation no need for  it
+-- local term_buf = nil
+-- vim.keymap.set("n", "<leader>o", function()
+--     if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+--         local win = vim.fn.bufwinid(term_buf)
+--         if win ~= -1 then
+--             vim.api.nvim_win_close(win, true)
+--             return
+--         end
+--     end
+--     vim.cmd("botright 9split | terminal")
+--     term_buf = vim.api.nvim_get_current_buf()
+--     vim.cmd("startinsert")
+-- end)
+
+-- gx and gX for browsing and copying links
+local function extract_url(line)
+    return line:match("(https?://[%w-_%.%?%.:/%+=&]+)")
+end
+vim.keymap.set("v", "gx", function()
+    local text
+    vim.cmd('normal! "vy')
+    text = vim.fn.getreg('v')
+
+    local url = extract_url(text)
+    if url then
+        os.execute("$BROWSER " .. url:gsub(" ", "\\ ") .. " >/dev/null 2>&1")
+        os.execute("xdotool key super+1")
+    else
+        print("No URL found")
+    end
+end, {})
+vim.keymap.set("v", "gX", function()
+    local text
+    vim.cmd('normal! "vy')
+    text = vim.fn.getreg('v')
+
+    local url = extract_url(text)
+    if url then
+        vim.fn.setreg('+', url)
+        print("Copied: " .. url)
+    else
+        print("No URL found")
+    end
+end, {})
 
 -- copy the current path to clipboard
 vim.keymap.set("n", "<leader>yp", function()
-	local path = vim.fn.expand("%:p")
-	vim.fn.setreg("+", path)
-	print("File path copied: " .. path)
+    local path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", path)
+    print("File path copied: " .. path)
 end)
 
 --gcc for commenting a sigle line

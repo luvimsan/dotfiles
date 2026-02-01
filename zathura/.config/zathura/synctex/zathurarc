@@ -20,6 +20,7 @@ set statusbar-fg                rgba(235,235,235,1)    # fg
 
 set highlight-color             "rgba(250,189,47,0)" # bright:yellow
 set highlight-active-color      "rgba(254,128,25,0)" # bright:orange
+set highlight-fg                "rgba(193,25,0,1)"    # fg
 
 set default-bg                  "rgba(40,40,40,1)"     # bg
 set default-fg                  rgba(235,235,235,1)    # fg
@@ -47,3 +48,5 @@ map H navigate previous
 map L navigate next
 
 map m set recolor false
+map j feedkeys "<C-Down>"
+map k feedkeys "<C-Up>"

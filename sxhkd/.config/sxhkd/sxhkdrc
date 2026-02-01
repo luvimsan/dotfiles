@@ -59,7 +59,7 @@ super + shift + N
         $TERMINAL -e newsboat
 
 super + shift + X
-        $TERMINAL -e "neomutt"
+        $TERMINAL -e sh -c 'mbsync -a >/dev/null 2>&1 & exec neomutt'
 
 super + shift + A
         $HOME/dotfiles/scripts/mount.sh
@@ -71,13 +71,13 @@ super + shift + G
         $HOME/dotfiles/scripts/bt.sh
 
 super + w
-        $HOME/dotfiles/scripts/define_word.sh
+        $HOME/dotfiles/scripts/define
 
 super + shift + O
         $HOME/dotfiles/scripts/screenshot.sh -s
 
 super + shift + Z
-        maim -u -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+        $HOME/dotfiles/scripts/full-screenshot.sh
 
 super + shift + colon
         $HOME/dotfiles/scripts/audio_switcher.sh

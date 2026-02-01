@@ -18,28 +18,7 @@ vim.keymap.set("n", "<leader>ta", function()
 	end
 end)
 
---[[ vim.api.nvim_create_autocmd("BufEnter", {
-	buffer = 0, -- only this buffer
-	callback = function()
-		pcall(vim.treesitter.highlighter.hl_reset, vim.treesitter.highlighter)
-	end,
-}) ]]
-
---[[ vim.api.nvim_create_autocmd("ModeChanged", {
-	pattern = "*:[vV\x16]*",
-	callback = function()
-		vim.cmd("TSBufDisable highlight")
-	end,
-})
-
-vim.api.nvim_create_autocmd("ModeChanged", {
-	pattern = "[vV\x16]*:*",
-	callback = function()
-		vim.cmd("TSBufEnable highlight")
-	end,
-}) ]]
-
-vim.keymap.set("n", "<leader>wa", function()
+vim.keymap.set("n", "<leader>he", function()
 	local line = vim.api.nvim_get_current_line()
 	local col = vim.fn.col(".")
 	local char = line:sub(col, col)
@@ -52,7 +31,7 @@ vim.keymap.set("n", "<leader>wa", function()
 	end
 end, { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>w;", function()
+vim.keymap.set("n", "<leader>ht", function()
 	local line = vim.api.nvim_get_current_line()
 	if line:find("false") then
 		line = line:gsub("false", "true", 1)

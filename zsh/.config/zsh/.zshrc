@@ -41,6 +41,7 @@ export BROWSER="brave"
 export TERMINAL="wezterm"
 export VIDEO="mpv"
 export IMAGE="sxiv"
+export MAILER=neomutt
 export FILE_MANAGER="lf"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/dotfiles/scripts"
@@ -83,18 +84,22 @@ alias mpvs="mpv --no-video"
 alias net="vnstat -i wlp1s0 --oneline"
 alias nb="newsboat"
 alias ya='timer 600 && { notify-send -t 39000 -u critical "🕌 Iqamah" "Get up for prayer" & mpv --no-config --volume=80  ~/sounds/iqamah.mp3 }'
-
 alias dop='cd "/media/fun/_loaay_data"'
 alias phone='scrcpy --max-size=1024 --video-codec=h264 --video-encoder=OMX.qcom.video.encoder.avc --video-bit-rate=4M'
 alias d='scrcpy --max-size=1024 --video-codec=h264  --video-bit-rate=4M & disown'
 alias rain='mpv --no-video --volume=26 --cache=yes --cache-secs=30 --ytdl-format=bestaudio "https://youtube.com/watch?v=nDq6TstdEi8"'
-alias lst="yt-dlp --cookies-from-browser brave --flat-playlist --print '%(title)s___SEP___%(url)s' 'https://www.youtube.com/playlist?list=WL' | awk -F '___SEP___' '{printf \"%s\n%s\n\n\", \$1, \$2}' | cat - ~/vault/1\ -\ Rough\ notes/towatch.md > ~/vault/1\ -\ Rough\ notes/towatch.md.tmp && mv ~/vault/1\ -\ Rough\ notes/towatch.md.tmp ~/vault/1\ -\ Rough\ notes/towatch.md"
+alias lst="yt-dlp --cookies-from-browser brave --flat-playlist \
+--print '%(title)s___SEP___%(url)s' 'https://www.youtube.com/playlist?list=WL' \
+| awk -F '___SEP___' '{printf \"[%s](%s)\n\n\", \$1, \$2} END {print \"---\"}' \
+| cat - ~/vault/1\ -\ Rough\ notes/towatch.md > ~/vault/1\ -\ Rough\ notes/towatch.md.tmp \
+&& mv ~/vault/1\ -\ Rough\ notes/towatch.md.tmp ~/vault/1\ -\ Rough\ notes/towatch.md"
 alias ytd="yt-dlp -f \"bestvideo[height<=720]+bestaudio/best[height<=720]\" --embed-metadata --merge-output-format mp4 "
 alias yt="yt-dlp -f \"bestvideo[height<=480]+bestaudio/best[height<=480]\" --embed-metadata --merge-output-format mp4 "
 
 alias wo="pomodoro work"
 alias br="pomodoro break"
 alias gl="git log --oneline --graph --decorate"
+alias ssh-mint="ssh mint@192.168.1.6"
 
 
 

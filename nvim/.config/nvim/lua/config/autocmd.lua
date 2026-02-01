@@ -1,3 +1,11 @@
+vim.api.nvim_create_user_command('E', function(opts)
+  local path = opts.args
+  if not path:match('^[/%.]') then
+    path = '~/' .. path
+  end
+  vim.cmd('e ' .. path)
+end, { nargs = 1, complete = 'file' })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("HighlightYank", { clear = true }),
 	callback = function()
