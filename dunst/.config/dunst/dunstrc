@@ -19,7 +19,7 @@
     horizontal_padding = 16
     text_icon_padding = 8
     format = "<b>%s</b>\n%b"
-    alignment = center
+    alignment = left
     vertical_alignment = center
     markup = full
 

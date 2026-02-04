@@ -49,5 +49,5 @@ x-terminal-emulator=wezterm.desktop
 x-scheme-handler/mailto=neomutt.desktop
 
 # File manager
-inode/directory=pcmanfm.desktop
+inode/directory=lf.desktop
 

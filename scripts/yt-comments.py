@@ -6,6 +6,12 @@ import re
 import html
 import textwrap
 import os
+import sqlite3
+import time
+import json
+
+CACHE_DB = os.path.expanduser("~/.cache/yt-comments.db")
+CACHE_TTL = 60 * 60 * 6
 
 CONFIG = os.path.expanduser("~/.config/yt-comments/config")
 API_KEY = None
@@ -27,6 +33,52 @@ arg = sys.argv[1]
 m = re.search(r"v=([^&]+)", arg)
 VIDEO_ID = m.group(1) if m else arg
 
+vr = requests.get(
+    "https://youtube.googleapis.com/youtube/v3/videos",
+    params={
+        "key": API_KEY,
+        "id": VIDEO_ID,
+        "part": "snippet,statistics",
+    }
+).json()
+
+if not vr.get("items"):
+    print("Video not found")
+    sys.exit(1)
+
+v = vr["items"][0]
+v_snip = v["snippet"]
+v_stat = v["statistics"]
+
+title = v_snip["title"]
+channel_id = v_snip["channelId"]
+channel_name = v_snip["channelTitle"]
+views = int(v_stat.get("viewCount", 0))
+likes = int(v_stat.get("likeCount", 0))
+
+# channel metadata
+cr = requests.get(
+    "https://youtube.googleapis.com/youtube/v3/channels",
+    params={
+        "key": API_KEY,
+        "id": channel_id,
+        "part": "statistics",
+    }
+).json()
+
+subs = int(cr["items"][0]["statistics"].get("subscriberCount", 0))
+
+def fmt(n):
+    return f"{n:,}"
+
+
+print(f"\033[1m{title}\033[0m")
+print(f"\033[36m{channel_name}\033[0m")
+print(f"\033[2mViews:\033[0m {fmt(views)}   "
+      f"\033[2mLikes:\033[0m {fmt(likes)}   "
+      f"\033[2mSubscribers:\033[0m {fmt(subs)}")
+
+# add the comments
 comments = []
 token = None
 while True:

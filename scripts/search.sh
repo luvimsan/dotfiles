@@ -20,12 +20,15 @@ url-cases() {
 }
 
 shortcuts() {
+    input=$(echo "$input" | xargs)
     case "$input" in
-        *' 'mo) input="https://monkeytype.com";;
-        *' 'yt) input="https://youtube.com";;
-        *' 're) input="https://reddit.com";;
-        *' 'ch) input="https://chatgpt.com";;
-        *' 'de) input="https://deepseek.com";;
+        mo) input="https://monkeytype.com";;
+        yt) input="https://youtube.com";;
+        re) input="https://reddit.com";;
+        ch) input="https://chatgpt.com";;
+        de) input="https://deepseek.com";;
+        sc) input="https://www.365scores.com/ar";;
+        *) ;;
     esac
 }
 

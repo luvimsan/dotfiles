@@ -94,7 +94,7 @@ super + shift + comma
         $HOME/dotfiles/scripts/kill_process.sh
 
 super + f
-        $TERMINAL -e sh -c "$HOME/dotfiles/scripts/ts"
+        $HOME/dotfiles/scripts/define-dmenu
 
 super + shift + R
         $HOME/dotfiles/scripts/screencast.sh

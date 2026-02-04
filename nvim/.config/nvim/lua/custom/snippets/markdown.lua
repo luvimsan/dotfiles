@@ -38,11 +38,11 @@ ls.add_snippets("markdown", {
         t("### References"),
         f(function()
             local d = get_date_info()
-            return { "", "Yesterday: [[" .. d.yesterday_path .. "|" .. d.yesterday_name .. "]]" }
+            return { "", "[[" .. d.yesterday_path .. "|" .. d.yesterday_name .. "]]" }
         end),
         f(function()
             local d = get_date_info()
-            return { "", "", "Tomorrow: [[" .. d.tomorrow_path .. "|" .. d.tomorrow_name .. "]]" }
+            return { "", "", "[[" .. d.tomorrow_path .. "|" .. d.tomorrow_name .. "]]" }
         end),
     }),
 
