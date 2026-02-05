@@ -47,6 +47,6 @@ map H navigate previous
 map L navigate next
 
 map m set recolor false
-map j feedkeys "<C-Down>"
-map k feedkeys "<C-Up>"
+# map j feedkeys "<C-Down>"
+# map k feedkeys "<C-Up>"
 
