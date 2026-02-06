@@ -50,7 +50,7 @@ return {
                 },
             },
 
-            -- ts_ls = false,
+            ts_ls = true,
 
             -- jsonls = {
             -- 	server_capabilities = {
