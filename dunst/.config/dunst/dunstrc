@@ -10,6 +10,7 @@
     # Transparent white using alpha (#RRGGBBAA)
     background = "#ffffff99"
     foreground = "#000000"
+    highlight = "#0169cc"
     transparency = 0
     font = Noto Sans 10
     icon_position = left

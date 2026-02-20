@@ -1,30 +1,26 @@
 #!/usr/bin/env bash
 
-arg=$1
-STEP=0.05
-case "$arg" in
-  up)
-    wpctl set-volume @DEFAULT_AUDIO_SINK@ ${STEP}+
-    ;;
-  down)
-    wpctl set-volume @DEFAULT_AUDIO_SINK@ ${STEP}-
-    ;;
-  toggle)
-    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    ;;
-  *)
-    echo "Usage: $0 {up|down|toggle}"
-    ;;
+STEP=5%
+SINK=@DEFAULT_AUDIO_SINK@
+
+case "$1" in
+  up)  wpctl set-volume "$SINK" "$STEP+" ;;
+  down)   wpctl set-volume "$SINK" "$STEP-" ;;
+  toggle) wpctl set-mute   "$SINK" toggle ;;
+  *) exit 1 ;;
 esac
 
+status=$(wpctl get-volume "$SINK")
+vol=$(echo "$status" | awk '{print int($2*100)}')
 
-read -r _ vol mute <<<"$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
-VOL=$(awk -v v="$vol" 'BEGIN {print int(v*100)}')
-[ "$VOL" -gt 100 ] && wpctl set-volume @DEFAULT_AUDIO_SINK@ 1.0 && VOL=100
-ICON=$(echo "$mute" | grep -q "MUTED" && echo "🔇" || echo "🔊")
-notify-send -h string:x-canonical-private-synchronous:volume \
-    -u low -t 700 "$ICON Volume: ${VOL}%"
+# [[ "$vol" -gt 100 ]] & $vol=100 & wpctl set-volume "$SINK" 1.0
 
-pkill -RTMIN+30 dwmblocks
-sleep 0.1
+[[ "$status" == *MUTED* ]] && icon="🔇" || icon="🔊"
 
+notify-send \
+  -h string:x-canonical-private-synchronous:volume \
+  -h int:value:"$vol" \
+  -u low -t 700 \
+  "$icon Volume: ${vol}%"
+
+kill -RTMIN+30 "$(pidof dwmblocks)" 2>/dev/null

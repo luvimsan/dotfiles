@@ -15,7 +15,7 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg
 export SSH_AUTH_SOCK
 export GNOME_KEYRING_CONTROL
 export CM_LAUNCHER=dmenu
-export GTK_THEME=Adwaita-dark
+export GTK_THEME=Materia-dark
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT6CT_PLATFORMTHEME=qt6ct
 

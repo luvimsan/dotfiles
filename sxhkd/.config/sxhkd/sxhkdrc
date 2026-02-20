@@ -3,6 +3,9 @@
 super + Return
         $TERMINAL
 
+shift + F2
+       $HOME/dotfiles/scripts/tutorial.sh
+
 super + b
         $HOME/dotfiles/scripts/brave.sh
 
@@ -19,10 +22,10 @@ super + r
         $HOME/dotfiles/scripts/search.sh
 
 super + m
-        $HOME/dotfiles/scripts/vid_fun.sh
+        $HOME/dotfiles/scripts/video_list.sh
 
 super + l
-        $HOME/dotfiles/scripts/pdf.sh
+        $HOME/dotfiles/scripts/pdf_list.sh
 
 super + c
         $HOME/dotfiles/scripts/emoji_picker.sh
@@ -63,6 +66,9 @@ super + shift + X
 
 super + shift + A
         $HOME/dotfiles/scripts/mount.sh
+
+super + shift + S
+        $HOME/dotfiles/scripts/toggle-mouse.sh
 
 super + shift + BackSpace
         $HOME/dotfiles/scripts/exit.sh

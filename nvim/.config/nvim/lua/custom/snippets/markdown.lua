@@ -46,7 +46,7 @@ ls.add_snippets("markdown", {
         end),
     }),
 
-    s("t", {
+    s("m", {
         f(function()
             return os.date("%Y-%m-%d %H:%M")
         end),

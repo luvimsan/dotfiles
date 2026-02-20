@@ -9,9 +9,8 @@ if [[ $url == *github.com* ]]; then
         url="${url/:/\/}"
         url="https://${url%.git}"
     fi
-    "$BROWSER" "$url" > /dev/null 2>&1 & disown
-    sleep 0.1
     xdotool key super+1
+    "$BROWSER" "$url" > /dev/null 2>&1 & disown
 else
     echo "This repo is not hosted on github"
 fi
