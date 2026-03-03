@@ -3,6 +3,7 @@
 from datetime import datetime
 import requests
 import sys
+import subprocess
 import re
 import html
 import textwrap
@@ -12,21 +13,23 @@ import itertools
 import sqlite3
 import time
 
-# config
-
-CONFIG = os.path.expanduser("~/.config/yt-comments/config")
 CACHE_DB = os.path.expanduser("~/.cache/yt-comments.db")
 
-API_KEY = None
-if os.path.exists(CONFIG):
-    with open(CONFIG) as f:
-        for line in f:
-            if line.startswith("API_KEY="):
-                API_KEY = line.split("=", 1)[1].strip()
+def get_api_key():
+    try:
+        result = subprocess.run(
+            ["pass", "show", "apis/youtube"],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+        return result.stdout.strip().splitlines()[0]
+    except subprocess.CalledProcessError:
+        print("Error: Could not retrieve API key from pass (apis/youtube)")
+        sys.exit(1)
 
-if not API_KEY:
-    print("Error: API_KEY not set in ~/.config/yt-comments/config")
-    sys.exit(1)
+API_KEY = get_api_key()
 
 if len(sys.argv) < 2:
     print("usage: yt-comments.py VIDEO_ID | URL")
@@ -232,4 +235,3 @@ for i, (author, text, likes) in enumerate(top_comments, 1):
     print()
 
 conn.close()
-

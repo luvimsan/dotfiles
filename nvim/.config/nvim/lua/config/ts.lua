@@ -13,8 +13,8 @@ if not search_paths then
     vim.fn.expand("~/dotfiles/suckless"),
     vim.fn.expand("~/tools"),
     vim.fn.expand("~/personal/courses"),
-    "/media/fun/_luvimsan/2.2_level_sem2",
-    "/media/fun/_luvimsan/",
+    -- "/media/fun/_luvimsan/2.2_level_sem2",
+    -- "/media/fun/_luvimsan/",
   }
 end
 

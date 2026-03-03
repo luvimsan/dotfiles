@@ -36,6 +36,9 @@ super + j
 super + u
         $TERMINAL -e $HOME/dotfiles/scripts/lfub.sh
 
+super + z
+        $HOME/dotfiles/scripts/video-player.sh
+
 super + shift + U
         pcmanfm
 

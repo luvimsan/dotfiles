@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+
+show_help() {
+    echo "Usage: alarm [options] <time>"
+    echo ""
+    echo "Options:"
+    echo "  -m, --message MSG    "
+    echo "  -n, --no-loop        To Stop The Loop sound"
+    echo "  -h, --help           Show this help"
+    echo ""
+    echo "Examples:"
+    echo "  alarm 5m             # Alarm in 5 minutes"
+    echo "  alarm 30s            # Alarm in 30 seconds"
+    echo "  alarm 1h             # Alarm in 1 hour"
+    echo "  alarm 07:30          # Alarm at 7:30 AM"
+    echo "  alarm -m 'Lunch!' 12:00"
+    exit 0
+}
+
+format_time() {
+    local seconds=$1
+    local hours=$((seconds / 3600))
+    local minutes=$(( (seconds % 3600) / 60 ))
+    local secs=$((seconds % 60))
+
+    if [ $hours -gt 0 ]; then
+        if [ $minutes -gt 0 ]; then
+            echo "${hours}h ${minutes} mins"
+        else
+            echo "${hours}h"
+        fi
+    else
+        echo "${minutes} mins"
+    fi
+}
+
+SOUND_FILE="$HOME/sounds/apple_alarm.mp3"
+MESSAGE="Time's up!"
+LOOP=True
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -m|--message) MESSAGE="$2"; shift 2 ;;
+        -n|--no-loop) LOOP=false; shift ;;
+        -h|--help) show_help ;;
+        *) TIME="$1"; shift ;;
+    esac
+done
+
+if [ -z "$TIME" ]; then
+    echo "Error: No time specified"
+    show_help
+fi
+
+if [ ! -f "$SOUND_FILE" ]; then
+    echo "Warning: Sound file not found: $SOUND_FILE"
+    SOUND_FILE=""
+fi
+
+if [[ "$TIME" == *:* ]]; then
+    current=$(date +%s)
+    target=$(date -d "$TIME" +%s 2>/dev/null)
+    if [ $? -ne 0 ]; then
+        echo "Invalid time format"
+        exit 1
+    fi
+    if [ $target -lt $current ]; then
+        target=$(date -d "$TIME tomorrow" +%s)
+    fi
+    seconds=$((target - current))
+    time_formatted=$(format_time $seconds)
+    echo "($time_formatted from now)"
+else
+    if [[ "$TIME" =~ ^([0-9]+)([smh])$ ]]; then
+        number=${BASH_REMATCH[1]}
+        unit=${BASH_REMATCH[2]}
+
+        case $unit in
+            s) seconds=$number ;;
+            m) seconds=$((number * 60)) ;;
+            h) seconds=$((number * 3600)) ;;
+        esac
+
+        case $unit in
+            s) unit_name="second" ;;
+            m) unit_name="minute" ;;
+            h) unit_name="hour" ;;
+        esac
+
+        if [ $number -eq 1 ]; then
+            time_formatted="$number $unit_name"
+        else
+            time_formatted="$number ${unit_name}s"
+        fi
+
+        echo "Alarm set for $time_formatted"
+    else
+        echo "Error: Invalid time format. Use e.g., 30s, 5m, 1h, or 09:00"
+        exit 1
+    fi
+fi
+
+echo "Press Ctrl+C to cancel"
+
+trap 'echo -e "\nAlarm stopped"; exit 0' INT TERM
+
+sleep "$seconds"
+
+if command -v notify-send &> /dev/null; then
+    notify-send -u critical -t 10000 "⏰ Alarm" "$MESSAGE"
+fi
+
+if [ -n "$SOUND_FILE" ]; then
+    if [ "$LOOP" = true ]; then
+        echo "Playing sound (Ctrl+C to stop)..."
+        while true; do
+            paplay "$SOUND_FILE" 2>/dev/null &
+            PLAY_PID=$!
+            wait $PLAY_PID 2>/dev/null
+            if [ $? -eq 130 ] || [ $? -eq 143 ]; then
+                echo -e "\nStopped by user"
+                pkill -f "paplay.*$SOUND_FILE" 2>/dev/null
+                exit 0
+            fi
+            sleep 0.1
+        done
+    else
+        paplay "$SOUND_FILE"
+    fi
+fi

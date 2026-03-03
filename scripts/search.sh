@@ -37,7 +37,9 @@ shortcuts() {
         ch) input="https://chatgpt.com";;
         de) input="https://deepseek.com";;
         li) input="https://lichess.org";;
-        sc) input="https://www.365scores.com/ar";;
+        x) input="https://x.com";;
+        sc) input="https://365scores.com/ar";;
+        wh) input="https://web.whatsapp.com";;
         *) ;;
     esac
 }

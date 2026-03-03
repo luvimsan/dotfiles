@@ -47,7 +47,10 @@ btmic=$(pactl list short sources | awk '/bluez_input/ { print $2; exit }')
 #Changing Background
 feh --bg-fill ~/Pictures/gray.png
 
+# display qol
 ~/dotfiles/scripts/restore_brightness.sh &
+redshift -O 5500  &
+
 ~/dotfiles/scripts/keyboard_watcher.sh &
 gpg -q -d ~/.gnupg/empty_file_encrypted_once.gpg >/dev/null 2>&1
 

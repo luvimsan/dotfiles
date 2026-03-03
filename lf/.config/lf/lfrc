@@ -179,7 +179,7 @@ map gp cd ~/Pictures
 # map gr cd
 map gc cd ~/personal/courses/
 map gt cd ~/.local/share/Trash/files
-map g\; cd "/media/fun/_luvimsan/2. 2_level_sem2"
+map gs cd "/media/fun/_luvimsan/2.2_level_sem2"
 
 # ─── the F Shortcuts ──────────────────────────────
 map <c-f>
