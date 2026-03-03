@@ -6,5 +6,5 @@ printf "%s\n" \
 "  Arch Linux" \
 "  Neovim, Linux, Docker, and more" \
 "  2nd Year Computer Science - Helwan University" \
-"  github.com/Loaay47"
+"  github.com/luvimsan"
 
