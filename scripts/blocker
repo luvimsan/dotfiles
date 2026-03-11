@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+# ===== USER INPUT =====
+read -p "Number of sessions: " SESSIONS
+read -p "Focus time (minutes): " FOCUS_MIN
+read -p "Break time (minutes): " BREAK_MIN
+
+# ===== CONFIG =====
+BLOCK_FILE="/etc/hosts"
+MARKER_START="# POMODORO_BLOCK_START"
+MARKER_END="# POMODORO_BLOCK_END"
+
+SITES=(
+twitter.com
+x.com
+reddit.com
+www.reddit.com
+)
+
+notify() {
+    notify-send "Pomodoro" "$1"
+}
+
+block_sites() {
+    doas sed -i "/$MARKER_START/,/$MARKER_END/d" $BLOCK_FILE
+    {
+        echo "$MARKER_START"
+        for site in "${SITES[@]}"; do
+            echo "127.0.0.1 $site"
+        done
+        echo "$MARKER_END"
+    } | doas tee -a $BLOCK_FILE > /dev/null
+}
+
+unblock_sites() {
+    doas sed -i "/$MARKER_START/,/$MARKER_END/d" $BLOCK_FILE
+}
+
+countdown() {
+    local seconds=$(( $1 * 60 ))
+    while [ $seconds -gt 0 ]; do
+        printf "\r%02d:%02d remaining" $((seconds/60)) $((seconds%60))
+        sleep 1
+        ((seconds--))
+    done
+    echo
+}
+
+# ===== MAIN =====
+notify "Pomodoro started — $SESSIONS sessions"
+
+for ((i=1; i<=SESSIONS; i++)); do
+    notify "Session $i/$SESSIONS started — Focus time"
+    echo "Session $i / $SESSIONS — FOCUS"
+
+    block_sites
+    countdown $FOCUS_MIN
+
+    notify "Session $i ended — Focus complete"
+
+    if [ $i -lt $SESSIONS ]; then
+        notify "Break started — $BREAK_MIN minutes"
+        echo "BREAK"
+
+        unblock_sites
+        countdown $BREAK_MIN
+
+        notify "Break ended — Back to focus"
+    fi
+done
+
+unblock_sites
+notify "All sessions completed — Social media unblocked"
+echo "All sessions completed. Social media unblocked."
