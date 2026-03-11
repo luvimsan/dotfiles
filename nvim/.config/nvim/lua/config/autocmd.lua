@@ -47,3 +47,4 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.diagnostic.enable(false, { bufnr = 0 })
   end,
 })
+vim.api.nvim_create_user_command('W', 'w !doas tee %', {})

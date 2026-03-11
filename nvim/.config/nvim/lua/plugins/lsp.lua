@@ -23,6 +23,7 @@ return {
             asm_lsp = true,
             -- marksman = true,
             jdtls = true,
+            rust_analyzer = true;
             pyright = true,
             ruff = { manual_install = true },
             bashls = true,

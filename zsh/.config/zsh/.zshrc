@@ -216,6 +216,7 @@ bindkey -s '^o' '^ulfcd\n'
 bindkey -s '^t' 'vi .\n'
 bindkey -s '^f' "ts\n"
 bindkey '^n' autosuggest-accept
+bindkey "^c" send-break
 
 
 
