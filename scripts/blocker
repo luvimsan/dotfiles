@@ -11,10 +11,12 @@ MARKER_START="# POMODORO_BLOCK_START"
 MARKER_END="# POMODORO_BLOCK_END"
 
 SITES=(
-twitter.com
 x.com
+www.x.com
 reddit.com
 www.reddit.com
+youtube.com
+www.youtube.com
 )
 
 notify() {

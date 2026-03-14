@@ -99,6 +99,7 @@ alias lst="yt-dlp --cookies-from-browser brave --flat-playlist \
 && mv ~/vault/1\ -\ Rough\ notes/towatch.md.tmp ~/vault/1\ -\ Rough\ notes/towatch.md"
 alias ytd="yt-dlp -f \"bestvideo[height<=720]+bestaudio/best[height<=720]\" --embed-metadata --merge-output-format mp4 "
 alias yt="yt-dlp -f \"bestvideo[height<=480]+bestaudio/best[height<=480]\" --embed-metadata --merge-output-format mp4 "
+alias yta="yt-dlp -f 'bestaudio' --extract-audio --audio-format mp3 --audio-quality 0 --embed-metadata --replace-in-metadata 'title' '[ًٌٍَُِّْٰٖٗ]' ''"
 
 alias wo="pomodoro work"
 alias br="pomodoro break"

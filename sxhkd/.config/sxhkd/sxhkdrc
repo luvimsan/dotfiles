@@ -3,9 +3,6 @@
 super + Return
         $TERMINAL
 
-shift + F2
-       $HOME/dotfiles/scripts/tutorial.sh
-
 super + b
         $HOME/dotfiles/scripts/brave.sh
 
@@ -71,7 +68,8 @@ super + shift + A
         $HOME/dotfiles/scripts/mount.sh
 
 super + shift + S
-        $HOME/dotfiles/scripts/toggle-mouse.sh
+        $TERMINAL -e rmpc
+        # $HOME/dotfiles/scripts/toggle-mouse.sh
 
 super + shift + BackSpace
         $HOME/dotfiles/scripts/exit.sh
@@ -113,6 +111,17 @@ super + v
 
 super + a
         boomer
+ ============================================
+# functions keys
+shift + F2
+       $HOME/dotfiles/scripts/tutorial.sh
+F7
+        mpc toggle
+F8
+        mpc next
+F6
+        mpc prev
+
  ============================================
 
 # mouse movements :
