@@ -23,7 +23,12 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 vim.keymap.set("i", "<M-l>", "<Right>")
+vim.keymap.set("n", "L", ":BufferLineCycleNext<CR>")
+vim.keymap.set("n", "H", ":BufferLineCyclePrev<CR>")
 
+for i = 1, 9 do
+  vim.keymap.set('n', '<A-' .. i .. '>', i .. 'gt', { desc = 'Go to tab ' .. i })
+end
 -- g remap
 vim.keymap.set("n", "j", "gj", { noremap = true })
 vim.keymap.set("n", "k", "gk", { noremap = true })
