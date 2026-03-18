@@ -104,16 +104,16 @@
                     )
                 ],
                 right: [
-                    (kind: Text("Vol: "), style: (fg: "#005577", modifiers: "Bold")),
-                    (kind: Property(Status(Volume)), style: (fg: "#005577", modifiers: "Bold")),
-                    (kind: Text("% "), style: (fg: "#005577", modifiers: "Bold"))
+                    (kind: Text("Vol: "), style: (fg: "#d8a657", modifiers: "Bold")),
+                    (kind: Property(Status(Volume)), style: (fg: "#d8a657", modifiers: "Bold")),
+                    (kind: Text("% "), style: (fg: "#d8a657", modifiers: "Bold"))
                 ]
             ),
             (
                 left: [
-                    (kind: Property(Status(Elapsed)), style: (fg: "#b8bcbe")),
+                    (kind: Property(Status(Elapsed)), style: (fg: "#d8a657")),
                     (kind: Text("/"), style: (fg: "#2e3a42")),
-                    (kind: Property(Status(Duration)), style: (fg: "#b8bcbe")),
+                    (kind: Property(Status(Duration)), style: (fg: "#d8a657")),
                 ],
                 center: [
                     (kind: Property(Song(Artist)), style: (fg: "#d8a657", modifiers: "Bold"),
