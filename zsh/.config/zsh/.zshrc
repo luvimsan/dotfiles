@@ -97,9 +97,10 @@ alias lst="yt-dlp --cookies-from-browser brave --flat-playlist \
 | awk -F '___SEP___' '{printf \"[%s](%s)\n\n\", \$1, \$2} END {print \"---\"}' \
 | cat - ~/vault/1\ -\ Rough\ notes/towatch.md > ~/vault/1\ -\ Rough\ notes/towatch.md.tmp \
 && mv ~/vault/1\ -\ Rough\ notes/towatch.md.tmp ~/vault/1\ -\ Rough\ notes/towatch.md"
-alias ytd="yt-dlp -f \"bestvideo[height<=720]+bestaudio/best[height<=720]\" --embed-metadata --merge-output-format mp4 "
-alias yt="yt-dlp -f \"bestvideo[height<=480]+bestaudio/best[height<=480]\" --embed-metadata --merge-output-format mp4 "
-alias yta="yt-dlp -f 'bestaudio' --extract-audio --audio-format mp3 --audio-quality 0 --embed-metadata --replace-in-metadata 'title' '[ًٌٍَُِّْٰٖٗ]' ''"
+alias ytd="yt-dlp -f \"bestvideo[height<=720]+bestaudio/best[height<=720]\" --embed-metadata --embed-thumbnail --merge-output-format mp4 "
+alias yt="yt-dlp -f \"bestvideo[height<=480]+bestaudio/best[height<=480]\" --embed-metadata --embed-thumbnail --merge-output-format mp4 "
+alias yta="yt-dlp -f 'bestaudio' --extract-audio --audio-format opus --embed-metadata --embed-thumbnail --replace-in-metadata 'title' '[ًٌٍَُِّْٰٖٗ]' ''"
+alias ytad="yt-dlp -f 'bestaudio' --extract-audio --audio-format mp3 --audio-quality 5 --embed-metadata --embed-thumbnail --replace-in-metadata 'title' '[ًٌٍَُِّْٰٖٗ]' ''"
 
 alias wo="pomodoro work"
 alias br="pomodoro break"
