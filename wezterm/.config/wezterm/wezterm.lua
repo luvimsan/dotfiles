@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-local config = wezterm.action
+local act = wezterm.action
 
 return {
 
@@ -14,6 +14,7 @@ return {
 		background = "#1c1c1c",
 	},
 	warn_about_missing_glyphs = false,
+	adjust_window_size_when_changing_font_size = false,
 
 	-- arabic
 	bidi_enabled = true,
@@ -36,49 +37,49 @@ return {
 	-- Key bindings
 	keys = {
 		{
-			key = "F12",
-			mods = "CTRL|SHIFT",
-			action = config.IncreaseFontSize,
+			key = "]",
+			mods = "CTRL",
+			action = act.IncreaseFontSize,
 		},
 		{
-			key = "F11",
-			mods = "CTRL|SHIFT",
-			action = config.DecreaseFontSize,
+			key = "[",
+			mods = "CTRL",
+			action = act.DecreaseFontSize,
 		},
 		{
-			key = "F10",
-			mods = "CTRL|SHIFT",
-			action = config.ResetFontSize,
+			key = "0",
+			mods = "CTRL",
+			action = act.ResetFontSize,
 		},
 		{
 			key = "T",
 			mods = "CTRL|SHIFT",
-			action = config.ScrollByLine(-1),
+			action = act.ScrollByLine(-1),
 		},
 		{
 			key = "H",
 			mods = "CTRL|SHIFT",
-			action = config.ScrollByLine(1),
+			action = act.ScrollByLine(1),
 		},
 		{
 			key = "U",
 			mods = "CTRL|SHIFT",
-			action = config.ScrollByPage(-0.5),
+			action = act.ScrollByPage(-0.5),
 		},
 		{
 			key = "D",
 			mods = "CTRL|SHIFT",
-			action = config.ScrollByPage(0.5),
+			action = act.ScrollByPage(0.5),
 		},
 		{
 			key = "C",
 			mods = "CTRL|SHIFT",
-			action = config.CopyTo("ClipboardAndPrimarySelection"),
+			action = act.CopyTo("ClipboardAndPrimarySelection"),
 		},
 		{
 			key = "v",
 			mods = "CTRL",
-			action = config.PasteFrom("Clipboard"),
+			action = act.PasteFrom("Clipboard"),
 		},
 	},
 }
