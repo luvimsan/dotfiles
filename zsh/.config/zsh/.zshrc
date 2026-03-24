@@ -2,11 +2,12 @@
 # 0. PERFORMANCE TRICK FOR ME ONLY
 # ===============================================================
 
-if [[ -z "$ZSH_WARM" && $- == *i* ]]; then
+if [[ -z "$ZSH_WARM" && $- == *i* && -z "$TMUX_WARMED" ]]; then
     export ZSH_WARM=true
-    # 'exec' replaces the slow process with a fresh fast one
+    export TMUX_WARMED=true
     exec zsh
 fi
+
 # ===============================================================
 # 1. INSTANT PROMPT
 # ===============================================================
@@ -56,8 +57,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export COLORTERM=truecolor
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+# eval "$(pyenv init --path --no-rehash)"
+# eval "$(pyenv init -)"
 
 
 # ===============================================================
@@ -105,7 +106,7 @@ alias ytad="yt-dlp -f 'bestaudio' --extract-audio --audio-format mp3 --audio-qua
 alias wo="pomodoro work"
 alias br="pomodoro break"
 alias gl="git log --oneline --graph --decorate"
-alias ssh-mint="ssh oudy@192.168.1.6"
+alias ssh-mint="ssh oudy@devcell"
 
 
 
@@ -225,36 +226,41 @@ bindkey "^c" send-break
 # ===============================================================
 # 8. COMPLETION SYSTEM
 # ===============================================================
-COMPDUMP_FILE="/run/user/$UID/zcompdump-$HOST"
-autoload -Uz compinit
-if [[ -n "$COMPDUMP_FILE"(#qN.m-1) ]]; then
-  compinit -C -d "$COMPDUMP_FILE"
-else
-  compinit -d "$COMPDUMP_FILE"
-fi
+# COMPDUMP_FILE="/run/user/$UID/zcompdump-$HOST"
+# autoload -Uz compinit
+# if [[ -n "$COMPDUMP_FILE"(#qN.m-1) ]]; then
+#   compinit -C -d "$COMPDUMP_FILE"
+# else
+#   compinit -d "$COMPDUMP_FILE"
+# fi
 
 # ===============================================================
 # 9. THEMES
 # ===============================================================
 
-git_branch=""
-git_pwd=""
+# git_branch=""
+# git_pwd=""
+#
+# update_git_branch() {
+#   if [[ "$PWD" != "$git_pwd" ]]; then
+#     git_pwd="$PWD"
+#     local branch
+#     branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+#     if [[ -n $branch ]]; then
+#       git_branch=" ($branch)"
+#     else
+#       git_branch=""
+#     fi
+#   fi
+# }
+# precmd_functions+=(update_git_branch)
+#
+# PROMPT=$'%{\033[38;2;102;205;170m%}[%m] %1~%{\033[0m%}%{\033[38;2;127;161;182m%}$git_branch%{\033[0m%} %{\033[38;2;255;80;80m%}❯%{\033[0m%} '
 
-update_git_branch() {
-  if [[ "$PWD" != "$git_pwd" ]]; then
-    git_pwd="$PWD"
-    local branch
-    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-    if [[ -n $branch ]]; then
-      git_branch=" ($branch)"
-    else
-      git_branch=""
-    fi
-  fi
-}
-precmd_functions+=(update_git_branch)
-
-PROMPT=$'%{\033[38;2;102;205;170m%}[%m] %1~%{\033[0m%}%{\033[38;2;127;161;182m%}$git_branch%{\033[0m%} %{\033[38;2;255;80;80m%}❯%{\033[0m%} '
+autoload -Uz vcs_info
+zstyle ':vcs_info:git:*' formats ' (%b)'
+precmd() { vcs_info }
+PROMPT='%F{#66cdaa}[%m] %1~%f%F{#7fa1b6}${vcs_info_msg_0_}%f %F{#ff5050}❯%f '
 
 # ===============================================================
 # 10. PLUGINS & THEME
