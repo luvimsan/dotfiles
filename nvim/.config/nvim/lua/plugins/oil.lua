@@ -30,6 +30,7 @@ return {
             win_options = {
                 -- Displays the path at the top
                 winbar = "    %{v:lua.require('oil').get_current_dir()}",
+                winhighlight = "WinBar:OilWinBar,WinBarNC:OilWinBarNC",
             },
             view_options = {
                 show_hidden = true,

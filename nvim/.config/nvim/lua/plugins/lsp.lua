@@ -31,7 +31,7 @@ return {
                 manual_install = true,
                 settings = {
                     gopls = {
-                        usePlaceholders = true,
+                        usePlaceholders = false,
                         hints = {
                             assignVariableTypes = true,
                             compositeLiteralFields = true,
