@@ -36,6 +36,7 @@ set recolor-keephue             true                 # keep original color
 
 set selection-clipboard clipboard
 set page-cache-size 30
+set window-title-basename true
 
 # remap
 unmap u
