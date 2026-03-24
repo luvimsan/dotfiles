@@ -10,16 +10,16 @@ category=$(printf "Fun\nProgramming\nSahm\nTsoding\nChess" | dmenu -i -l 7 -p "V
 
 case "$category" in
     Fun)
-        video_list=$(find ~/personal/courses/fun/general -type f -name "*.mp4" 2>/dev/null);;
+        video_list=$(find ~/personal/courses/fun/general -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null);;
     Programming)
-        video_list=$(find ~/personal/courses -maxdepth 2 -type f -name "*.mp4" 2>/dev/null)
-        video_list+=" $(find /media/fun/_luvimsan/1.Programming -maxdepth 3 -type f -name "*.mp4" 2>/dev/null)";;
+        video_list=$(find ~/personal/courses -maxdepth 2 -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null)
+        video_list+=" $(find /media/fun/_luvimsan/1.Programming -maxdepth 3 -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null)";;
     Sahm)
-        video_list=$(find ~/personal/courses/fun/sahm -maxdepth 1 -type f -name "*.mp4" 2>/dev/null);;
+        video_list=$(find ~/personal/courses/fun/sahm -maxdepth 1 -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null);;
     Tsoding)
-        video_list=$(find ~/personal/courses/fun/tsoding -maxdepth 1 -type f -name "*.mp4" 2>/dev/null);;
+        video_list=$(find ~/personal/courses/fun/tsoding -maxdepth 1 -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null);;
     Chess)
-        video_list=$(find /media/fun/_luvimsan/5.Chess -type f -name "*.mp4" 2>/dev/null);;
+        video_list=$(find /media/fun/_luvimsan/5.Chess -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null);;
 esac
 
 menu=$(awk -F'|' -v videos="$video_list" '
