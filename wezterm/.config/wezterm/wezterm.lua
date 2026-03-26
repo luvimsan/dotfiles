@@ -81,5 +81,13 @@ return {
 			mods = "CTRL",
 			action = act.PasteFrom("Clipboard"),
 		},
+		{
+			key = "8",
+			mods = "CTRL",
+			action = act.Multiple({
+				act.IncreaseFontSize,
+				act.IncreaseFontSize,
+			}),
+		},
 	},
 }
