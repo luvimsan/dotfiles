@@ -1,3 +1,9 @@
-vim.keymap.set("n", "<localleader>c", ":w | !go build<CR>")
-vim.keymap.set("n", "<localleader>r", ":w | !go run %<CR>")
-vim.keymap.set("n", "<localleader>t", ":w | !go test<CR>")
+local set = vim.opt_local
+
+set.expandtab = false
+set.tabstop = 4
+set.shiftwidth = 4
+
+vim.keymap.set("n", "<space>td", function()
+	require("dap-go").debug_test()
+end, { buffer = 0 })
