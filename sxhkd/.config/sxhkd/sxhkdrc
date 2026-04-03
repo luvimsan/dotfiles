@@ -4,7 +4,7 @@ super + Return
         $TERMINAL
 
 super + b
-        $HOME/dotfiles/scripts/brave.sh
+        $BROWSER
 
 super + e
         mpv --player-operation-mode=pseudo-gui
@@ -62,7 +62,7 @@ super + shift + N
         $TERMINAL -e newsboat
 
 super + shift + X
-        $TERMINAL -e sh -c 'mbsync -a >/dev/null 2>&1 & exec neomutt'
+        $TERMINAL -e neomutt
 
 super + shift + A
         $HOME/dotfiles/scripts/mount.sh
@@ -93,7 +93,7 @@ super + alt + space
         $HOME/dotfiles/scripts/keyboard_layout.sh
 
 super + Escape
-        pkill -USR1 -x sxhkd
+        pkill -USR1 sxhkd
  ============================================
 # Tools:
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 printf "%s\n" \
-"  Loaay Waheed" \
+"  Luvimsan" \
 "  Backend Developer" \
-"  Arch Linux" \
+"  DevOps Engineer" \
 "  Neovim, Linux, Docker, and more" \
 "  2nd Year Computer Science - Helwan University" \
 "  github.com/luvimsan"
