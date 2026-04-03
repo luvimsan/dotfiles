@@ -50,7 +50,7 @@ return {
 			telescope.setup({
 				defaults = require("telescope.themes").get_ivy({
 					layout_config = {
-						height = 0.30,
+						height = 0.40,
 					},
 					preview = false,
 					vimgrep_arguments = {

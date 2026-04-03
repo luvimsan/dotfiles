@@ -16,7 +16,7 @@ return {
 				}),
 			},
 		})
-		vim.keymap.set("n", "nm", function()
+		vim.keymap.set("n", "tm", function()
 			vim.lsp.buf.format({ name = "null-ls" })
 		end, {})
 		local notify = vim.notify

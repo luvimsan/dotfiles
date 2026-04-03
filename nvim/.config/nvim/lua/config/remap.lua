@@ -54,8 +54,8 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 
 -- control the size of splits
-vim.keymap.set("n", "<M-,>", "<C-w>5>")
-vim.keymap.set("n", "<M-.>", "<C-w>5<")
+vim.keymap.set("n", "<M-.>", "<C-w>5>")
+vim.keymap.set("n", "<M-,>", "<C-w>5<")
 vim.keymap.set("n", "<M-c>", "<C-w>+")
 vim.keymap.set("n", "<M-r>", "<C-w>-")
 
@@ -74,7 +74,7 @@ vim.keymap.set("n", "q:", "<Nop>")
 vim.keymap.set("ca", "Q", "q")
 
 -- prime prime
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>sn", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 --Competitive Programming
@@ -110,7 +110,7 @@ vim.keymap.set("n", "<leader>m", function()
     vim.cmd("Oil")
 end)
 
-vim.keymap.set("n", "<leader>tm", function()
+vim.keymap.set("n", "<leader>nm", function()
     local cmp = require("cmp")
     local cfg = cmp.get_config().enabled
     local state = not (type(cfg) == "function" and cfg() or cfg)
@@ -161,7 +161,7 @@ end)
 local function extract_url(line)
     return line:match("(https?://[%w-_%.%?%.:/%+=&]+)")
 end
-vim.keymap.set("v", "gx", function()
+vim.keymap.set("v", "gX", function()
     local text
     vim.cmd('normal! "vy')
     text = vim.fn.getreg('v')
@@ -174,7 +174,7 @@ vim.keymap.set("v", "gx", function()
         print("No URL found")
     end
 end, {})
-vim.keymap.set("v", "gX", function()
+vim.keymap.set("v", "gx", function()
     local text
     vim.cmd('normal! "vy')
     text = vim.fn.getreg('v')

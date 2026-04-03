@@ -4,7 +4,7 @@ return {
     lazy = true,
 
     keys = {
-        { "<leader>on", ":ObsidianToday<CR>" },
+        { "<leader>hr", ":ObsidianToday<CR>" },
         {
             "<leader>hn",
             function()

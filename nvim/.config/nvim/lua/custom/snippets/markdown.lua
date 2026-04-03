@@ -33,9 +33,9 @@ ls.add_snippets("markdown", {
         t({"", "| 🌇 Maghrib |               |         |         |           |"}),
         t({"", "| 🌙 Isha    |               |         |         |           |", ""}),
 
-        t({"", "### Tasks", "", "- [ ] ", "", "---", "### Notes", "", "", "", "", "", ""}),
+        t({"", "## Tasks", "", "- [ ] ", "", "---", "## Notes", "", "", "", "", "", ""}),
 
-        t("### References"),
+        t("## References"),
         f(function()
             local d = get_date_info()
             return { "", "[[" .. d.yesterday_path .. "|" .. d.yesterday_name .. "]]" }
