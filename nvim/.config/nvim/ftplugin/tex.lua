@@ -22,7 +22,7 @@ end
 local function OpenPdf()
 	local proc = "zathura"
 	local opta = "-c"
-	local optb = "~/.config/zathura/synctex"
+	local optb = vim.fn.expand("~/.config/zathura/synctex")
 	local optc = vim.fn.expand("%:p:r") .. ".pdf"
 	local optd = "--synctex-forward"
 	local opte = vim.fn.line(".") .. ":" .. vim.fn.col(".") .. ":" .. vim.fn.expand("%:p")

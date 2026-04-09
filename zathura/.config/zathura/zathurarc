@@ -34,8 +34,12 @@ set recolor                     true
 set recolor-keephue             true                 # keep original color
 
 set selection-clipboard clipboard
-set page-cache-size 30
 set window-title-basename true
+
+# delay problem
+set render-loading false
+set page-cache-size 30
+set scroll-step 100
 
 # remap
 unmap u
