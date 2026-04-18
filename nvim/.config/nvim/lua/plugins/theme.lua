@@ -1,59 +1,9 @@
-return {
-	{
-		"ellisonleao/gruvbox.nvim",
-		enabled = false,
-		priority = 1000,
-		config = function()
-			require("gruvbox").setup({
-				transparent = false,
-				transparent_mode = false,
-				terminal_colors = true,
-				undercurl = true,
-				underline = true,
-				bold = true,
-				italic = {
-					operators = false,
-				},
-				contrast = "hard",
-				dim_inactive = false,
-				overrides = {
-					SignColumn = { bg = "none" },
-					LineNr = { bg = "none" },
-					CursorLineNr = { bg = "none" },
-					VertSplit = { bg = "none", fg = "#3c3836" },
-					NormalNC = { bg = "none" },
-					NormalFloat = { bg = "none" },
-					FloatBorder = { bg = "none" },
-					Folded = { bg = "none" },
-				},
-			})
-			vim.o.background = "dark"
-			vim.cmd.colorscheme("gruvbox")
-		end,
-	},
+vim.pack.add ({
+    "https://github.com/blazkowolf/gruber-darker.nvim",
+})
 
-	{
-		"blazkowolf/gruber-darker.nvim",
-		-- enabled = false,
-		priority = 1000,
-		config = function()
-			require("gruber-darker").setup({
-				bold = true,
-				undercurl = true,
-				underline = false,
-				italic = { operators = false },
-				dim_inactive = false,
-				overrides = {
-					SignColumn = { bg = "none" },
-					LineNr = { bg = "none" },
-					-- CursorLineNr = { bg = "none" },
-					-- VertSplit = { bg = "none", fg = "#3c3836" },
-					NormalNC = { bg = "none" },
-					NormalFloat = { bg = "none" },
-					FloatBorder = { bg = "none" },
-					Folded = { bg = "none" },
-				},
-			})
-		end,
-	},
-}
+vim.cmd.colorscheme("gruber-darker")
+vim.api.nvim_set_hl(0, "Whitespace", { fg = "#3a3a3a" })
+vim.api.nvim_set_hl(0, "OilWinBar", { fg = "#9a9a9a" })
+vim.api.nvim_set_hl(0, "OilWinBarNC", { fg = "#9a9a9a" })
+

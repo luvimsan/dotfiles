@@ -1,16 +1,10 @@
-return {
-	{
-		"tpope/vim-dadbod",
-		cmd = { "DB", "DBUI" },
-	},
-	{
-		"kristijanhusak/vim-dadbod-ui",
-		cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
-		dependencies = { "tpope/vim-dadbod" },
-	},
-	{
-		"kristijanhusak/vim-dadbod-completion",
-		ft = { "sql", "mysql", "plsql" },
-		dependencies = { "tpope/vim-dadbod" },
-	},
-}
+require("plugins.lazyload").on_vim_enter(function()
+    vim.pack.add ({
+        "https://github.com/tpope/vim-dadbod",
+        "https://github.com/kristijanhusak/vim-dadbod-ui",
+        "https://github.com/kristijanhusak/vim-dadbod-completion",
+    })
+
+end)
+
+

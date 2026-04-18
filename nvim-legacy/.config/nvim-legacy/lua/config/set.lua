@@ -1,9 +1,7 @@
 --Line numbers
-vim.opt.nu = true
+vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.cursorline = false
 vim.opt.guicursor = ""
--- vim.opt.winborder = "rounded"
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 

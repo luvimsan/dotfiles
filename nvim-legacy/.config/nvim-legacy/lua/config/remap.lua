@@ -89,6 +89,12 @@ vim.keymap.set("n", "<leader>l", "<cmd> source %<CR>")
 vim.keymap.set("v", "<leader>l", ":lua<CR>")
 vim.keymap.set("n", "<localleader>h", ":Compile<CR>")
 
+vim.keymap.set('n', '<leader>R', function()
+  local session = vim.fn.stdpath('state') .. '/restart_session.vim'
+  vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
+  vim.cmd('restart source ' .. vim.fn.fnameescape(session))
+end)
+
 vim.keymap.set("n", "<leader>d", function()
     if vim.bo.filetype == "oil" then
         vim.cmd("lcd " .. vim.fn.fnameescape(require("oil").get_current_dir()))
