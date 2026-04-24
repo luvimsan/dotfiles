@@ -116,11 +116,11 @@ super + a
 shift + F2
        $HOME/dotfiles/scripts/tutorial.sh
 F7
-        mpc toggle
+        mpc --host /tmp/mpd_socket toggle
 F8
-        mpc next
+        mpc --host /tmp/mpd_socket next
 F6
-        mpc prev
+        mpc --host /tmp/mpd_socket prev
 
  ============================================
 
