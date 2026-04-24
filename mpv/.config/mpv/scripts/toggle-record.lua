@@ -12,9 +12,9 @@ local function get_output_path()
     local title = mp.get_property("media-title") or "recording"
     title = sanitize_filename(title)
 
-    local dir = mp.command_native({ "expand-path", "~~home/screencast" })
-
-    utils.subprocess({
+    -- local dir = mp.command_native({ "expand-path", "~~home/screencast" })
+	local dir = "/home/loaay/screencast/"
+	utils.subprocess({
         args = { "mkdir", "-p", dir }
     })
 
