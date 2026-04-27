@@ -625,7 +625,8 @@ end
 
 ---@param shortcut? Shortcut
 ---@param is_pointer? boolean Whether this was called by a pointer.
-function Menu:activate_selected_item(shortcut, is_pointer)
+---@param force_keep_open? boolean Force menu to stay open after activation.
+function Menu:activate_selected_item(shortcut, is_pointer, force_keep_open)
 	local menu = self.current
 	local item = menu.items[menu.selected_index]
 	if item then
@@ -646,7 +647,7 @@ function Menu:activate_selected_item(shortcut, is_pointer)
 				value = item.value,
 				is_pointer = is_pointer == true,
 				action = action and action.name,
-				keep_open = item.keep_open or menu.keep_open,
+				keep_open = force_keep_open or item.keep_open or menu.keep_open,
 				modifiers = shortcut and shortcut.modifiers or nil,
 				alt = shortcut and shortcut.alt or false,
 				ctrl = shortcut and shortcut.ctrl or false,
@@ -1123,7 +1124,7 @@ function Menu:enable_key_bindings()
 	-- `+` at the end enables `repeatable` flag
 	local standalone_keys = {
 		'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'f12', '/', 'kp_divide', 'mbtn_back',
-		{'f', 'ctrl'}, {'v', 'ctrl'}, {'c', 'ctrl'},
+		{'f', 'ctrl'}, {'v', 'ctrl'}, {'c', 'ctrl'}, {'n', 'ctrl'}, {'p', 'ctrl'},
 	}
 	local modifiable_keys = {'up+', 'down+', 'left', 'right', 'enter', 'kp_enter', 'bs', 'tab', 'esc', 'pgup+',
 		'pgdwn+', 'home', 'end', 'del'}
@@ -1191,6 +1192,10 @@ function Menu:handle_shortcut(shortcut, info)
 		self:search_submit()
 	elseif id == 'up' or id == 'down' then
 		self:navigate_by_offset(id == 'up' and -1 or 1, true)
+	elseif id == 'ctrl+n' then
+		self:navigate_by_offset(1, true)
+	elseif id == 'ctrl+p' then
+		self:navigate_by_offset(-1, true)
 	elseif id == 'pgup' or id == 'pgdwn' then
 		local items_per_page = round((menu.height / self.scroll_step) * 0.4)
 		self:navigate_by_offset(items_per_page * (id == 'pgup' and -1 or 1))
