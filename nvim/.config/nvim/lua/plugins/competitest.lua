@@ -91,8 +91,8 @@ require("plugins.lazyload").on_vim_enter(function()
         save_all_files = false,
         compile_directory = ".",
         compile_command = {
-            c = { exec = "gcc", args = { "-Wall", "$(FNAME)", "-g", "-o", "$(FNOEXT)" } },
-            cpp = { exec = "g++", args = { "-Wall", "$(FNAME)", "-g", "-o", "$(FNOEXT)" } },
+            c = { exec = "gcc", args = { "-Wall", "$(FNAME)", "-ggdb", "-o", "$(FNOEXT)" } },
+            cpp = { exec = "g++", args = { "-Wall", "$(FNAME)", "-ggdb", "-o", "$(FNOEXT)" } },
             rust = { exec = "rustc", args = { "$(FNAME)" } },
             java = { exec = "javac", args = { "$(FNAME)" } },
         },

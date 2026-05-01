@@ -35,7 +35,3 @@ end
 
 vim.keymap.set("n", "<localleader>c", Compile, { buffer = true, silent = true })
 vim.keymap.set("n", "<localleader>r", OpenPdf, { buffer = true })
-vim.keymap.set("n", "<localleader>s", function()
-	vim.cmd("luafile " .. vim.fn.stdpath("config") .. "/ftplugin/tex.lua")
-end)
-print("sourced")

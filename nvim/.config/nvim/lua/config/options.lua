@@ -6,7 +6,7 @@ vim.o.cursorlineopt = "number"
 vim.o.colorcolumn = "80"
 vim.o.splitright = true
 vim.o.splitbelow = true
-vim.g.syntax = true
+vim.o.winborder = "rounded"
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
@@ -38,7 +38,16 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable= true
 vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldcolumn = "1"
+vim.opt.fillchars = {
+  fold = " ",
+  foldopen = "",
+  foldclose = "",
+  foldsep = " ",
+  foldinner = " ",
+  eob = " ",
+}
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
@@ -55,3 +64,9 @@ vim.opt.listchars = {
 }
 
 require("vim._core.ui2").enable()
+
+vim.filetype.add({
+  extension = {
+    h = "c",
+  },
+})

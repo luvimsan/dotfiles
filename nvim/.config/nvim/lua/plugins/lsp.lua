@@ -18,6 +18,7 @@ require("plugins.lazyload").on_vim_enter(function()
         ruff = { manual_install = true },
         bashls = true,
 		jdtls = true,
+		intelephense = true,
         gopls = {
             manual_install = true,
             settings = {
@@ -42,7 +43,12 @@ require("plugins.lazyload").on_vim_enter(function()
             },
         },
         clangd = {
-            init_options = { clangdFileStatus = true },
+            init_options = {
+				clangdFileStatus = true ,
+				clangd = {
+					background_index = false,
+				}
+			},
             filetypes = { "c", "cpp" },
         },
     }
@@ -72,6 +78,7 @@ require("plugins.lazyload").on_vim_enter(function()
         "delve",
         "html",
         "cssls",
+        "codelldb",
         "marksman",
     }
 

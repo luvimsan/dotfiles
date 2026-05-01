@@ -39,6 +39,12 @@ vim.keymap.set("n", "<leader>sh", "<C-w>s")
 vim.keymap.set("n", "<leader>.", ":+tabmove<CR>", { silent = true })
 vim.keymap.set("n", "<leader>,", ":-tabmove<CR>", { silent = true })
 
+-- Buffer navigation
+vim.keymap.set("n", "<leader>tn", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "<leader>tp", ":bprevious<CR>", { silent = true })
+vim.keymap.set("n", "<leader>te", ":e #<CR>", { silent = true })
+vim.keymap.set("n", "<leader>tq", ":bp | bd #<CR>", { silent = true })
+
 -- windows navigation
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
@@ -117,6 +123,13 @@ vim.keymap.set("n", "<leader>q", function()
     else
         vim.cmd("copen")
     end
+end)
+
+vim.keymap.set("n", "<leader>nm", function()
+    local cfg = require("cmp").get_config().enabled
+    local state = not (type(cfg) == "function" and cfg() or cfg)
+    require("cmp").setup.buffer({ enabled = state })
+    print("Autocomplete " .. (state and "enabled" or "disabled"))
 end)
 
 -- gx and gX for browsing and copying links
