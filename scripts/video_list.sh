@@ -5,7 +5,7 @@ USAGE_FILE="$HOME/.local/share/video_usage.txt"
 mkdir -p "$(dirname "$USAGE_FILE")"
 touch "$USAGE_FILE"
 
-category=$(printf "Fun\nProgramming\nSahm\nTsoding\nChess" | dmenu -i -l 7 -p "Video:")
+category=$(printf "Fun\nProgramming\nSahm\nTsoding\nChess\nArchive" | dmenu -i -l 7 -p "Video:")
 [ -z "$category" ] && exit
 
 case "$category" in
@@ -20,6 +20,8 @@ case "$category" in
         video_list=$(find ~/personal/courses/fun/tsoding -maxdepth 1 -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null);;
     Chess)
         video_list=$(find /media/fun/_luvimsan/5.Chess -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null);;
+    Archive)
+        video_list=$(find /media/fun/_luvimsan/3.Fun -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null);;
 esac
 
 menu=$(awk -F'|' -v videos="$video_list" '

@@ -21,7 +21,7 @@ url-cases() {
                 input="https://www.google.com/search?udm=14&q=$(printf "%s" "$query" | jq -s -R -r @uri)"
                 ;;
             *" n")
-                query="${input% l}"
+                query="${input% n}"
                 input="https://duckduckgo.com/?q=$(printf "%s" "$query" | jq -s -R -r @uri)";;
             *) input="https://lite.duckduckgo.com/lite?q=$(printf "%s" "$input" | jq -s -R -r @uri)";;
         esac

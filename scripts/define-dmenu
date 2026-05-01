@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 file="$HOME/notes/vocab.txt"
-mkdir -p "$(basename "$file")"
+mkdir -p "$(dirname "$file")"
 
 word=$(dmenu -p "📖 Define:" < /dev/null) || exit 0
 
