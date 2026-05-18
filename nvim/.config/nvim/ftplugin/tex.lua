@@ -5,7 +5,12 @@ local function Compile()
 	vim.cmd("cd %:p:h")
 	vim.cmd("silent make")
 	vim.cmd("cd -")
-	vim.cmd("cwindow")
+    local qflist = vim.fn.getqflist()
+    qflist = vim.tbl_filter(function(item)
+        return not (item.text and item.text:match("may have changed%. Rerun"))
+    end, qflist)
+    vim.fn.setqflist(qflist, "r")
+    vim.cmd("cwindow")
 end
 
 local function OnError(_, data, _)

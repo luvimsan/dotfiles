@@ -61,7 +61,7 @@ vim.keymap.set("n", "<M-r>", "<C-w>-")
 vim.keymap.set("n", "x", '"_x', { noremap = true, silent = true })
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
--- next greatest remap ever : asbjornHaland
+-- next greatest remap ever
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ts<CR>")
@@ -99,6 +99,15 @@ vim.keymap.set("n", "<leader>m", function()
     end
     vim.cmd("sp")
     vim.cmd("Oil")
+end)
+
+
+-- search in orgfiles
+vim.keymap.set("n", "<leader>so", function()
+	require("telescope.builtin").find_files({
+		prompt_title = "Search orgs",
+		cwd = vim.fn.expand("~/org"),
+	})
 end)
 
 -- toggle fugitive

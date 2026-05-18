@@ -36,11 +36,15 @@ require("plugins.lazyload").on_vim_enter(function()
             },
         },
         ts_ls = true,
-        html = true,
+        ols = true,
+        html = {
+			filetype = {"html", "php" }
+		},
         cssls = {
             server_capabilities = {
                 documentFormattingProvider = false,
             },
+			filetype = {"css", "php" }
         },
         clangd = {
             init_options = {
@@ -80,6 +84,7 @@ require("plugins.lazyload").on_vim_enter(function()
         "cssls",
         "codelldb",
         "marksman",
+        "ols",
     }
 
     vim.list_extend(ensure_installed, servers_to_install)
