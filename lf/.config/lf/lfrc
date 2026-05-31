@@ -176,6 +176,7 @@ map gf cd /media/fun/_luvimsan/
 map gd cd ~/Downloads
 map gl cd ~/localsend/
 map gp cd ~/Pictures
+map gj cd ~/projects
 # map gr cd
 map gc cd ~/personal/courses/
 map gt cd ~/.local/share/Trash/files
