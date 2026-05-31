@@ -76,10 +76,10 @@ alias egrep='egrep --color=auto'
 alias yay='paru'
 
 ## xbps
-alias i='doas pacman -S --needed'
-alias u='doas pacman -Syu'
-alias q='doas pacman -Ss'
-alias r='doas pacman -Rns'
+# alias i='doas pacman -S --needed'
+# alias u='doas pacman -Syu'
+# alias q='doas pacman -Ss'
+# alias r='doas pacman -Rns'
 
 alias vi='nvim'
 alias lf='lfub.sh'
@@ -106,7 +106,9 @@ alias ytad="yt-dlp -f 'bestaudio' --extract-audio --audio-format mp3 --audio-qua
 alias wo="pomodoro work"
 alias br="pomodoro break"
 alias gl="git log --oneline --graph --decorate"
+alias gm="git send-mail --cover-letter --thread --no-chain-reply-to"
 alias ssh-mint="ssh oudy@devcell"
+alias loc="cloc ."
 
 
 
@@ -163,6 +165,18 @@ co() {
     python3 ~/dotfiles/scripts/yt-comments.py "$1" | less -R
 }
 
+sw() {
+    sleep 0.5 && sowon "$@" >/dev/null 2>&1 & disown
+}
+
+yz() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	command rm -f -- "$tmp"
+}
+
 lfcd() {
     tmp="$(mktemp -uq)"
     trap 'rm -f "$tmp" >/dev/null 2>&1' HUP INT QUIT TERM PWR EXIT
@@ -215,7 +229,7 @@ bindkey -M vicmd 'y' yank-to-clipboard
 # FZF sourcing
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
-bindkey -s '^o' '^ulfcd\n'
+bindkey -s '^o' '^uyz\n'
 bindkey -s '^t' 'vi .\n'
 bindkey -s '^f' "ts\n"
 bindkey '^n' autosuggest-accept

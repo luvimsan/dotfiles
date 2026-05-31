@@ -31,7 +31,8 @@ super + j
         rofi -show calc -modi calc -no-sort
 
 super + u
-        $TERMINAL -e $HOME/dotfiles/scripts/lfub.sh
+        $TERMINAL -e yazi
+        # $TERMINAL -e $HOME/dotfiles/scripts/lfub.sh
 
 super + z
         $HOME/dotfiles/scripts/video-player.sh
