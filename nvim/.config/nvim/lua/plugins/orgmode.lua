@@ -9,7 +9,7 @@ require("plugins.lazyload").on_vim_enter(function()
 		org_archive_location = '~/org/archive.org::*',
 		org_todo_keywords = { 'TODO(t)', '|', 'DONE(d)' },
 
-		org_startup_folded = 'showeverything',
+		org_startup_folded = 'content',
 		org_hide_emphasis_markers = true,
 		org_hide_leading_stars = true,
 

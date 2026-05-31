@@ -2,7 +2,7 @@
 vim.keymap.set({ "n", "i" }, "<C-b>", "<Esc>:t.<CR>", { silent = false })
 
 -- commands
-vim.keymap.set("n", "<localleader>h", ":Compile<CR>")
+vim.keymap.set("n", "<localleader>h", ":silent w | Compile<CR>")
 vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
 vim.keymap.set("n", "<leader>sa", vim.cmd.DBUIToggle)
 vim.keymap.set("n", "<M-a>", "ggVG")

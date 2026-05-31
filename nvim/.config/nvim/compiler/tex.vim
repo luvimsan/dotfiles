@@ -10,8 +10,11 @@ endif
 
 CompilerSet errorformat=%E!\ LaTeX\ %trror:\ %m,
 	\%E!\ %m,
-	\%+WLaTeX\ %.%#Warning:\ %.%#line\ %l%.%#,
-	\%+W%.%#\ at\ lines\ %l--%*\\d,
+	"\%+WLaTeX\ %.%#Warning:\ %.%#line\ %l%.%#,
+	"\%+W%.%#\ at\ lines\ %l--%*\\d,
+    \%-GLaTeX\ %.%#Warning:\ %.%#line\ %l%.%#,
+    \%-G%.%#\ at\ lines\ %l--%*\\d,
+    \%-G%.%#Font\ shape%.%#undefined%.%#,
     \%-GLabel(s)\ may\ have\ changed.\ Rerun%.%#,
 	\%WLaTeX\ %.%#Warning:\ %m,
 	\%Cl.%l\ %m,
