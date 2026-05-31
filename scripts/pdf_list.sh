@@ -19,6 +19,8 @@ case "$category" in
         pdf_list=$(find ~/personal/books/chess -type f -name "*.pdf" 2>/dev/null);;
     Downloads)
         pdf_list=$(find ~/Downloads -type f -name "*.pdf" 2>/dev/null);;
+    *)
+        exit;;
 esac
 
 menu=$(awk -F'|' -v pdfs="$pdf_list" '

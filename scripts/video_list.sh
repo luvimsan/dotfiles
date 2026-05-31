@@ -22,6 +22,8 @@ case "$category" in
         video_list=$(find /media/fun/_luvimsan/5.Chess -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null);;
     Archive)
         video_list=$(find /media/fun/_luvimsan/3.Fun -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" \) 2>/dev/null);;
+    *)
+        exit;;
 esac
 
 menu=$(awk -F'|' -v videos="$video_list" '

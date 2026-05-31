@@ -22,12 +22,17 @@ save_pass() {
     pass show -c "$entry" 2>/dev/null
     sleep 1 && clipctl enable &
 }
+
+save_otp() {
+    pass otp -c "$entry" 2>/dev/null
+    sleep 1 && clipctl enable &
+}
 case "$action" in
   password)
       save_pass
     ;;
   otp)
-      save_pass
+      save_otp
     ;;
   both)
     pass show -c "$entry" 2>/dev/null
