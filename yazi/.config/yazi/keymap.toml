@@ -1,0 +1,15 @@
+[mgr]
+prepend_keymap = [
+    { on = "<C-t>", run = "tab_create --current", desc = "New tab (current path)" },
+    { on = "<C-w>", run = "tab_close", desc = "Close current tab" },
+
+    { on = "<A-1>", run = "tab_switch 0", desc = "Switch to tab 1" },
+    { on = "<A-2>", run = "tab_switch 1", desc = "Switch to tab 2" },
+    { on = "<A-3>", run = "tab_switch 2", desc = "Switch to tab 3" },
+    { on = "<A-4>", run = "tab_switch 3", desc = "Switch to tab 4" },
+    { on = "<A-5>", run = "tab_switch 4", desc = "Switch to tab 5" },
+    { on = "<A-6>", run = "tab_switch 5", desc = "Switch to tab 6" },
+    { on = "<A-7>", run = "tab_switch 6", desc = "Switch to tab 7" },
+    { on = "<A-8>", run = "tab_switch 7", desc = "Switch to tab 8" },
+    { on = "<A-9>", run = "tab_switch 8", desc = "Switch to tab 9" },
+]
