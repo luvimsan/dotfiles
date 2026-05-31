@@ -1,0 +1,20 @@
+[init]
+	defaultBranch = main
+
+[user]
+	name = luvimsan
+	email = luvimsan@gmail.com
+	signingkey = BCB81E5934912CCD
+
+[pull]
+	rebase = false
+[rerere]
+	enabled = true
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+
+[sendemail]
+    sendmailcmd = msmtp -a luvimsan@gmail.com
+    confirm = always

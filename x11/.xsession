@@ -10,10 +10,6 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
   export DBUS_SESSION_BUS_ADDRESS
 fi
 
-# Start D-Bus session
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
-export SSH_AUTH_SOCK
-export GNOME_KEYRING_CONTROL
 export CM_LAUNCHER=dmenu
 export GTK_THEME=Materia-dark
 export QT_QPA_PLATFORMTHEME=qt5ct
@@ -45,17 +41,16 @@ btmic=$(pactl list short sources | awk '/bluez_input/ { print $2; exit }')
 [ -n "$btmic" ] && pactl set-source-volume "$btmic" 135%
 
 #Changing Background
-feh --bg-fill ~/Pictures/gray.png
+feh --bg-fill ~/dotfiles/wallpapers/gray.png
 
 # display qol
 ~/dotfiles/scripts/restore_brightness.sh &
 redshift -O 5500  &
 
 ~/dotfiles/scripts/keyboard_watcher.sh &
-gpg -q -d ~/.gnupg/empty_file_encrypted_once.gpg >/dev/null 2>&1
-
 
 # Background services
+xset r rate 250 40 &
 sxhkd &
 mpris-proxy &
 # keynav &

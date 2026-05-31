@@ -41,7 +41,7 @@ btmic=$(pactl list short sources | awk '/bluez_input/ { print $2; exit }')
 
 
 #Changing Background
-feh --bg-fill ~/Pictures/hyprland_wallpapers/Dark_Nature.png
+feh --bg-fill ~/dotfiles/wallpapers/gray.png
 
 eval $(/usr/bin/gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
