@@ -7,7 +7,6 @@ require("plugins.lazyload").on_vim_enter(function()
 		org_agenda_files =  { '~/org/inbox.org', '~/org/refile.org' },
 		org_default_notes_file = '~/org/refile.org',
 		org_archive_location = '~/org/archive.org::*',
-		org_todo_keywords = { 'TODO(t)', '|', 'DONE(d)' },
 
 		org_startup_folded = 'content',
 		org_hide_emphasis_markers = true,

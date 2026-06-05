@@ -1,5 +1,6 @@
 vim.pack.add({
-    "https://github.com/tpope/vim-fugitive"
+    "https://github.com/tpope/vim-fugitive",
+    "https://github.com/rbong/vim-flog",
 })
 
 local group = vim.api.nvim_create_augroup("Luca_fugitive", { clear = true })
@@ -22,9 +23,9 @@ vim.api.nvim_create_autocmd("FileType", {
         end, opts)
 
         -- start a :Git push -u origin <branch> command (leaves you in command-line to type branch)
-        vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts)
+        vim.keymap.set("n", "<leader>tp", ":Git push -u origin ", {buffer = bufnr})
     end,
 })
-vim.keymap.set("n", "gl", "<cmd>diffget //3<CR>")
-vim.keymap.set("n", "g;", "<cmd>diffget //2<CR>")
+vim.keymap.set({"n", "v" }, "<leader>gl", ":diffget //3<CR>")
+vim.keymap.set({"n", "v" }, "<leader>gh", ":diffget //2<CR>")
 
