@@ -46,6 +46,7 @@ END {
 }' "$USAGE_FILE" | sort -nr | cut -f2-)
 
 selection=$(echo "$menu" | cut -f1 | dmenu -i -l 7 -p "Open PDF:")
+exit_code=$?
 [ -z "$selection" ] && exit
 
 file=$(echo "$menu" | awk -F '\t' -v sel="$selection" '$1==sel {print $2}')
@@ -63,6 +64,12 @@ if [ -n "$file" ] && [ -f "$file" ]; then
     echo "$count|$file" >> "$USAGE_FILE.tmp"
     mv "$USAGE_FILE.tmp" "$USAGE_FILE"
 
-    zathura "$file" &
+    case $exit_code in
+        0)
+            zathura "$file" &
+            ;;
+        1)
+            xournalpp "$file" &
+            ;;
+    esac
 fi
-
