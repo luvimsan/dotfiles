@@ -5,7 +5,7 @@ USAGE_FILE="$HOME/.local/share/pdf_usage.txt"
 mkdir -p "$(dirname "$USAGE_FILE")"
 touch "$USAGE_FILE"
 
-category=$(printf "Deen\nProgramming\nGeneral\nChess\nDownloads" | dmenu -i -l 7 -p "PDF:")
+category=$(printf "Deen\nProgramming\nToRead\nGeneral\nChess\nDownloads" | dmenu -i -l 7 -p "PDF:")
 [ -z "$category" ] && exit
 
 case "$category" in
@@ -13,6 +13,8 @@ case "$category" in
         pdf_list=$(find ~/personal/deen/pdfs -type f -name "*.pdf" 2>/dev/null);;
     Programming)
         pdf_list=$(find ~/personal/books/programming -type f -name "*.pdf" 2>/dev/null);;
+    ToRead)
+        pdf_list=$(find ~/personal/books/toread -type f -name "*.pdf" 2>/dev/null);;
     General)
         pdf_list=$(find ~/personal/books/general -type f -name "*.pdf" 2>/dev/null);;
     Chess)

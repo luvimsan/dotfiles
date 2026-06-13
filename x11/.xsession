@@ -29,7 +29,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=brave
 export TERMINAL=wezterm
-export FILE_MANAGER=lf
+export FILE_MANAGER=yazi
 
 # keyboard conf
 setxkbmap -layout us,ara -variant dvorak,digits -option grp:alt_shift_toggle,caps:escape
