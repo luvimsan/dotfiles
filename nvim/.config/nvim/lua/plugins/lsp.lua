@@ -23,6 +23,7 @@ require("plugins.lazyload").on_vim_enter(function()
             manual_install = true,
             settings = {
                 gopls = {
+                    usePlaceholders = true,
                     hints = {
                         assignVariableTypes = true,
                         compositeLiteralFields = true,

@@ -7,6 +7,7 @@ if not search_paths then
   search_paths = {
     vim.fn.expand("~"),
     vim.fn.expand("~/projects"),
+    vim.fn.expand("~/projects/luvimsan/"),
     vim.fn.expand("~/projects/experiments"),
     vim.fn.expand("~/personal"),
     vim.fn.expand("~/Downloads"),

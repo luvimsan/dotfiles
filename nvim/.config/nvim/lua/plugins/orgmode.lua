@@ -14,26 +14,26 @@ require("plugins.lazyload").on_vim_enter(function()
 
 
 		org_capture_templates = {
-			g = {
-				description = 'Daily Log / Journal Entry',
+			t = {
+				description = 'task',
 				template = '*** TODO %?\n    SCHEDULED: %t',
 				target = '~/org/inbox.org',
 				datetree = true
 			},
-			w = {
-				description = 'Watch Later Video',
+			s = {
+				description = 'save-later',
 				template = '** [[%^{Link}][%?]]\n Notes: ',
 				target = '~/org/refile.org',
 				headline = 'Youtube Videos',
 			},
 			n = {
-				description = 'Random Notes',
+				description = 'notes',
 				template = '** %?\n',
 				target = '~/org/refile.org',
 				headline = 'Random Notes',
 			},
 			e = {
-				description = 'English Words',
+				description = 'english words',
 				template = '- %?\n',
 				target = '~/org/errors.org',
 			},

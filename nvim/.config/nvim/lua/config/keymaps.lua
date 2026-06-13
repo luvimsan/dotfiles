@@ -68,7 +68,7 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ts<CR>")
 
 -- remove idiotic keys
 vim.keymap.set("n", "Q", "<nop>")
-vim.keymap.set("n", "q:", "<Nop>")
+-- vim.keymap.set("n", "q:", "<Nop>")
 vim.keymap.set("ca", "Q", "q")
 
 -- prime prime
@@ -79,6 +79,13 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("v", "<leader>l", ":lua<CR>")
 vim.keymap.set("n", "<leader>l", "<cmd>.lua<CR>")
 vim.keymap.set("n", "<leader><leader>l", ":silent w<CR>|:source %<CR>", {silent = true})
+
+vim.keymap.set("n", "<localleader>h", function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "" then
+    vim.cmd("silent w")
+  end
+  vim.cmd("Compile")
+end)
 
 vim.keymap.set("n", "<leader>d", function()
     if vim.bo.filetype == "oil" then
