@@ -4,7 +4,7 @@ require("plugins.lazyload").on_vim_enter(function()
 	})
 
 	require('orgmode').setup({
-		org_agenda_files =  { '~/org/inbox.org', '~/org/refile.org' },
+		org_agenda_files =  { '~/org/tasks.org', '~/org/refile.org' },
 		org_default_notes_file = '~/org/refile.org',
 		org_archive_location = '~/org/archive.org::*',
 
@@ -17,13 +17,13 @@ require("plugins.lazyload").on_vim_enter(function()
 			t = {
 				description = 'task',
 				template = '*** TODO %?\n    SCHEDULED: %t',
-				target = '~/org/inbox.org',
+				target = '~/org/tasks.org',
 				datetree = true
 			},
 			s = {
-				description = 'save-later',
+				description = 'links',
 				template = '** [[%^{Link}][%?]]\n Notes: ',
-				target = '~/org/refile.org',
+				target = '~/org/links.org',
 				headline = 'Youtube Videos',
 			},
 			n = {
@@ -35,7 +35,7 @@ require("plugins.lazyload").on_vim_enter(function()
 			e = {
 				description = 'english words',
 				template = '- %?\n',
-				target = '~/org/errors.org',
+				target = '~/org/words.org',
 			},
 		}
 	})

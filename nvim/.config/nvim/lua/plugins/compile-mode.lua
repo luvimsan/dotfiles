@@ -27,6 +27,12 @@ require("plugins.lazyload").on_vim_enter(function()
                 col = 3,
                 priority = 2,
             },
+                go_test_location = {
+                regex = "^\\s*\\([a-zA-Z0-9_.-]\\+\\.go\\):\\([1-9][0-9]*\\)",
+                filename = 1,
+                row = 2,
+                priority = 2,
+            },
         },
     }
 end)
