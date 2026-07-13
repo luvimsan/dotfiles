@@ -240,13 +240,13 @@ bindkey "^c" send-break
 # ===============================================================
 # 8. COMPLETION SYSTEM
 # ===============================================================
-# COMPDUMP_FILE="/run/user/$UID/zcompdump-$HOST"
-# autoload -Uz compinit
-# if [[ -n "$COMPDUMP_FILE"(#qN.m-1) ]]; then
-#   compinit -C -d "$COMPDUMP_FILE"
-# else
-#   compinit -d "$COMPDUMP_FILE"
-# fi
+COMPDUMP_FILE="/run/user/$UID/zcompdump-$HOST"
+autoload -Uz compinit
+if [[ -n "$COMPDUMP_FILE"(#qN.m-1) ]]; then
+  compinit -C -d "$COMPDUMP_FILE"
+else
+  compinit -d "$COMPDUMP_FILE"
+fi
 
 # ===============================================================
 # 9. THEMES

@@ -2,9 +2,9 @@
 	defaultBranch = main
 
 [user]
-	name = luvimsan
+	name = Luvimsan
 	email = luvimsan@gmail.com
-	signingkey = BCB81E5934912CCD
+	signingkey = 666C28814B3605FD
 
 [pull]
 	rebase = false
