@@ -68,7 +68,7 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww ts<CR>")
 
 -- remove idiotic keys
 vim.keymap.set("n", "Q", "<nop>")
--- vim.keymap.set("n", "q:", "<Nop>")
+vim.keymap.set("n", "q:", "<Nop>")
 vim.keymap.set("ca", "Q", "q")
 
 -- prime prime
