@@ -82,9 +82,10 @@ alias yay='paru'
 # alias r='doas pacman -Rns'
 
 alias vi='nvim'
+alias k='kubectl'
 alias lf='lfub.sh'
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
-alias cclip="xclip -selection clipboard"
+alias c="xclip -selection clipboard"
 alias mpvs="mpv --no-video"
 alias net="vnstat -i wlp1s0 --oneline"
 alias nb="newsboat"
@@ -246,6 +247,12 @@ if [[ -n "$COMPDUMP_FILE"(#qN.m-1) ]]; then
   compinit -C -d "$COMPDUMP_FILE"
 else
   compinit -d "$COMPDUMP_FILE"
+fi
+
+autoload -Uz bashcompinit && bashcompinit
+
+if command -v aws_completer >/dev/null 2>&1; then
+    complete -C aws_completer aws
 fi
 
 # ===============================================================

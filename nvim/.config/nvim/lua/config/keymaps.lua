@@ -6,8 +6,8 @@ vim.keymap.set("n", "<localleader>h", ":silent w | Compile<CR>")
 vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
 vim.keymap.set("n", "<leader>sa", vim.cmd.DBUIToggle)
 vim.keymap.set("n", "<M-a>", "ggVG")
-vim.keymap.set("n", "]]", ":cnext<CR>zz", { noremap = true, silent = true })
-vim.keymap.set("n", "[[", ":cprev<CR>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>]", ":cnext<CR>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>[", ":cprev<CR>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>")
 
 -- Navigation

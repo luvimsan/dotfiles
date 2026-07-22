@@ -17,6 +17,7 @@ require("plugins.lazyload").on_vim_enter(function()
         pyright = true,
         ruff = { manual_install = true },
         bashls = true,
+		terraformls = true,
 		jdtls = true,
 		intelephense = true,
         gopls = {

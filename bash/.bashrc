@@ -205,6 +205,11 @@ lfcd() {
 # ===============================================================
 
 set -o vi
+bind -m vi-insert '"\C-l": clear-screen'
+bind -m vi-command '"\C-l": clear-screen'
+if [[ $- == *i* ]]; then
+    stty -ctlecho
+fi
 
 # ===============================================================
 # 7. KEYBINDINGS & FZF

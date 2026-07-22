@@ -50,6 +50,5 @@ end)
 vim.keymap.set("n", "<leader>ps", function()
 	require("telescope.builtin").live_grep({
 		prompt_title = "Live Grep",
-		grep_open_files = true,
 	})
 end)

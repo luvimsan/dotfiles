@@ -19,7 +19,7 @@ require("plugins.lazyload").on_vim_enter(function()
     })
 
     vim.keymap.set("n", "tm", function()
-        vim.lsp.buf.format({ name = "null-ls" })
+        vim.lsp.buf.format()
     end, {})
 
     local notify = vim.notify
