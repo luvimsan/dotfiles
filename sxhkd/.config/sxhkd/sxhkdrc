@@ -110,6 +110,9 @@ super + shift + R
 super + v
         CM_LAUNCHER=dmenu clipmenu -i -l 6 -p "Clipboard:"
 
+super + shift + v
+        $HOME/dotfiles/scripts/vpn.sh
+
 super + a
         boomer
  ============================================
