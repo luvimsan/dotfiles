@@ -1,32 +1,33 @@
 require("plugins.lazyload").on_vim_enter(function()
-    vim.pack.add({
-        "https://github.com/nvimtools/none-ls.nvim",
-        "https://github.com/nvim-lua/plenary.nvim",
-    })
+	vim.pack.add({
+		"https://github.com/nvimtools/none-ls.nvim",
+		"https://github.com/nvim-lua/plenary.nvim",
+	})
 
-    local null_ls = require("null-ls")
-    null_ls.setup({
-        sources = {
-            null_ls.builtins.formatting.stylua,
-            null_ls.builtins.formatting.gofmt,
-            null_ls.builtins.formatting.clang_format.with({
-                extra_args = { "--style={BasedOnStyle: LLVM, IndentWidth: 4}" },
-            }),
-            null_ls.builtins.formatting.google_java_format.with({
-                extra_args = { "--aosp" },
-            }),
-        },
-    })
+	local null_ls = require("null-ls")
+	null_ls.setup({
+		sources = {
+			null_ls.builtins.formatting.stylua,
+			null_ls.builtins.formatting.gofmt,
+			null_ls.builtins.formatting.clang_format.with({
+				extra_args = { "--style={BasedOnStyle: LLVM, IndentWidth: 4}" },
+			}),
+			null_ls.builtins.formatting.google_java_format.with({
+				extra_args = { "--aosp" },
+			}),
+		},
+	})
 
-    vim.keymap.set("n", "tm", function()
-        vim.lsp.buf.format()
-    end, {})
+	vim.keymap.set("n", "tm", function()
+		vim.lsp.buf.format({ async = false })
+		vim.cmd("silent update")
+	end)
 
-    local notify = vim.notify
-    vim.notify = function(msg, ...)
-        if type(msg) == "string" and msg:match("timeout") then
-            return
-        end
-        notify(msg, ...)
-    end
+	local notify = vim.notify
+	vim.notify = function(msg, ...)
+		if type(msg) == "string" and msg:match("timeout") then
+			return
+		end
+		notify(msg, ...)
+	end
 end)
