@@ -7,3 +7,6 @@
 [submodule "suckless/st"]
 	path = suckless/st
 	url = git@github.com:luvimsan/st.git
+[submodule "nvim/.config/nvim"]
+	path = nvim/.config/nvim
+	url = git@github.com:luvimsan/nvim-config
