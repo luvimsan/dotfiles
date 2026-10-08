@@ -38,7 +38,7 @@ super + z
         $HOME/dotfiles/scripts/video-player.sh
 
 super + shift + U
-        pcmanfm
+        thunar
 
 super + shift + P
         $HOME/dotfiles/scripts/pass.sh

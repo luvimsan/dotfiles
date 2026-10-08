@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+URL="$1"
+CACHE_DIR="/tmp/newsboat_thumbs"
+mkdir -p "$CACHE_DIR"
+
+[ -z "$URL" ] && exit 1
+
+HASH=$(printf '%s' "$URL" | md5sum | awk '{print $1}')
+THUMB_PATH="$CACHE_DIR/$HASH.jpg"
+
+if [ ! -f "$THUMB_PATH" ]; then
+    if [[ "$URL" =~ (youtube\.com/watch\?v=|youtu\.be/|youtube\.com/shorts/)([a-zA-Z0-9_-]{11}) ]]; then
+        YOUTUBE_ID="${BASH_REMATCH[2]}"
+        curl -sL "https://img.youtube.com/vi/$YOUTUBE_ID/hqdefault.jpg" -o "$THUMB_PATH"
+    fi
+
+    if [ ! -f "$THUMB_PATH" ]; then
+        IMG_URL=$(curl -sL --max-time 3 "$URL" | grep -oP '(?<=property="og:image" content=")[^"]+' | head -n 1)
+        [ -n "$IMG_URL" ] && curl -sL "$IMG_URL" -o "$THUMB_PATH"
+    fi
+fi
+
+if [ -f "$THUMB_PATH" ]; then
+    clear
+    wezterm imgcat "$THUMB_PATH"
+    echo ""
+    read -n 1 -s -r
+else
+    notify-send "Newsboat" "No thumbnail found."
+fi

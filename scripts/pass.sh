@@ -6,12 +6,22 @@ entry=$(find "$PASS_DIR" -name "*.gpg" \
   | dmenu -i -l 8 -p "Pass:")
 [ -z "$entry" ] && exit
 
-has_otp=$(pass show "$entry" 2>/dev/null | grep -i "^otpauth://\|^totp:\|^otp:" | wc -l)
+file_content=$(pass show "$entry" 2>/dev/null)
+has_otp=$(echo "$file_content" | grep -i "^otpauth://\|^totp:\|^otp:" | wc -l)
+has_username=$(echo "$file_content" | grep -i "^Username:" | wc -l)
 
-if [ "$has_otp" -gt 0 ]; then
-  action=$(printf "both\npassword\notp" | dmenu -i -l 3 -p "Copy:")
+if [ "$has_username" -gt 0 ]; then
+    username=$(echo "$file_content" | awk -F': ' 'tolower($1) ~ /^username/ {print $2}')
+fi
+
+if [ "$has_otp" -gt 0 ] && [ "$has_username" -gt 0 ]; then
+    action=$(printf "password\nusername\notp\nboth" | dmenu -i -l 4 -p "Copy:")
+elif [ "$has_otp" -gt 0 ]; then
+    action=$(printf "password\notp" | dmenu -i -l 2 -p "Copy:")
+elif [ "$has_username" -gt 0 ]; then
+    action=$(printf "password\nusername" | dmenu -i -l 2 -p "Copy:")
 else
-  action="password"
+    action="password"
 fi
 
 [ -z "$action" ] && exit
@@ -23,16 +33,25 @@ save_pass() {
     sleep 1 && clipctl enable &
 }
 
+save_username() {
+    echo -n "$username" | xclip -selection clipboard 2>/dev/null || echo -n "$username" | wl-copy 2>/dev/null
+    sleep 1 && clipctl enable &
+}
+
 save_otp() {
     pass otp -c "$entry" 2>/dev/null
     sleep 1 && clipctl enable &
 }
+
 case "$action" in
   password)
-      save_pass
+    save_pass
+    ;;
+  username)
+    save_username
     ;;
   otp)
-      save_otp
+    save_otp
     ;;
   both)
     pass show -c "$entry" 2>/dev/null

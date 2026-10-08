@@ -3,7 +3,7 @@
 
 [user]
 	name = Luvimsan
-	email = luvimsan@gmail.com
+	email = loaay@luvimsan.dev
 	signingkey = 666C28814B3605FD
 
 [pull]
@@ -16,5 +16,5 @@
 	gpgsign = true
 
 [sendemail]
-    sendmailcmd = msmtp -a luvimsan@gmail.com
+    sendmailcmd = msmtp -a loaay@luvimsan.dev
     confirm = always

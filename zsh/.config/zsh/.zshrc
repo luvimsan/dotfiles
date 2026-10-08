@@ -178,6 +178,10 @@ yz() {
 	command rm -f -- "$tmp"
 }
 
+send() {
+    kdeconnect-cli --share "$1" -d 0baa820276e44ed783922174b230bfd0
+}
+
 lfcd() {
     tmp="$(mktemp -uq)"
     trap 'rm -f "$tmp" >/dev/null 2>&1' HUP INT QUIT TERM PWR EXIT
@@ -250,6 +254,10 @@ else
 fi
 
 autoload -Uz bashcompinit && bashcompinit
+
+if command -v terraform >/dev/null 2>&1; then
+  complete -o nospace -C $(command -v terraform) terraform
+fi
 
 if command -v aws_completer >/dev/null 2>&1; then
     complete -C aws_completer aws
