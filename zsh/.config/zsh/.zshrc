@@ -1,32 +1,23 @@
 # ===============================================================
-# 0. PERFORMANCE TRICK FOR ME ONLY
-# ===============================================================
-
-if [[ -z "$ZSH_WARM" && $- == *i* && -z "$TMUX_WARMED" ]]; then
-    export ZSH_WARM=true
-    export TMUX_WARMED=true
-    exec zsh
-fi
-
-# ===============================================================
 # 1. INSTANT PROMPT
 # ===============================================================
 # Optimization flags for plugins
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
-export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+# export ZSH_AUTOSUGGEST_USE_ASYNC=1
+# export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+# export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # ===============================================================
 # 2. SHELL OPTIONS (SETOPT)
 # ===============================================================
-setopt autocd extendedglob nomatch notify PROMPT_SUBST
-setopt NO_NOMATCH NO_NOTIFY interactivecomments
+setopt autocd extendedglob notify PROMPT_SUBST
+setopt NO_NOMATCH interactivecomments
 unsetopt beep
 
 # History Logic
-setopt APPEND_HISTORY INC_APPEND_HISTORY SHARE_HISTORY
-setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS
-
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
 
 # ===============================================================
 # 3. EXPORTS
@@ -75,11 +66,11 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias yay='paru'
 
-## xbps
-# alias i='doas pacman -S --needed'
-# alias u='doas pacman -Syu'
-# alias q='doas pacman -Ss'
-# alias r='doas pacman -Rns'
+# pm
+alias i='doas pacman -S --needed'
+alias u='doas pacman -Syyu'
+alias q='doas pacman -Ss'
+alias r='doas pacman -Rns'
 
 alias vi='nvim'
 alias k='kubectl'
