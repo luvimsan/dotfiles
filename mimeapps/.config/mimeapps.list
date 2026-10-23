@@ -26,7 +26,7 @@ image/svg+xml=brave-browser.desktop
 image/heic=sxiv.desktop
 
 # PDFs & Office
-application/pdf=org.pwmt.zathura.desktop
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop
 
@@ -49,7 +49,7 @@ x-terminal-emulator=wezterm.desktop
 x-scheme-handler/mailto=brave-browser.desktop
 
 # File manager
-inode/directory=lf.desktop
+inode/directory=thunar.desktop
 x-scheme-handler/pttp=CiscoPacketTracerPtsa-9.0.0.desktop
 application/x-pka=CiscoPacketTracer-9.0.0.desktop
 application/x-pkt=CiscoPacketTracer-9.0.0.desktop
@@ -58,4 +58,5 @@ application/x-pksz=CiscoPacketTracer-9.0.0.desktop
 x-scheme-handler/accela=accela.desktop
 x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/bruno=bruno.desktop
+x-scheme-handler/discord=vesktop.desktop
 
