@@ -145,8 +145,12 @@ static const button_t buttons[] = {
 	{ 0,            1,                i_cursor_navigate,    None },
 	{ 0,            1,                i_drag,               DRAG_RELATIVE },
 	{ 0,            3,                g_switch_mode,        None },
-	{ 0,            4,                g_zoom,               +1 },
-	{ 0,            5,                g_zoom,               -1 },
+	{ ControlMask,  4,                g_zoom,               +1 },
+	{ ControlMask,  5,                g_zoom,               -1 },
+	{ 0,            4,                i_scroll,             DIR_UP },
+	{ 0,            5,                i_scroll,             DIR_DOWN },
+	{ ShiftMask,    4,                i_scroll,             DIR_LEFT },
+	{ ShiftMask,    5,                i_scroll,             DIR_RIGHT },
 };
 
 #endif
