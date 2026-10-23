@@ -5,15 +5,16 @@ mkdir -p "$(dirname "$file")"
 
 word=$(dmenu -p "📖 Define:" < /dev/null) || exit 0
 
-# check errors
 [[ -z "$word" || "$word" =~ [\/] ]] && notify-send -u critical -t 3000 "❌ Invalid input" && exit 0
-query=$(curl -s --connect-timeout 5 --max-time 10 "https://api.dictionaryapi.dev/api/v2/entries/en_US/$word")
+
+# Datamuse API query (asks for definitions with 'def' sp=spelling)
+query=$(curl -s --connect-timeout 5 --max-time 10 "https://api.datamuse.com/words?sp=$word&md=d")
 [ $? -ne 0 ] && notify-send -u critical -t 3000 "⚠️ Connection error" && exit 1
-[[ "$query" == *"No Definitions Found"* ]] && notify-send -u critical -t 3000 "❌ Invalid word" && exit 0
 
-# Check for invalid word response
-def=$(echo "$query" | jq -r '.[0].meanings[] | "\(.partOfSpeech): \(.definitions[0].definition)\n"')
+# Extract definition using jq
+def=$(echo "$query" | jq -r '.[0].defs[]?' 2>/dev/null)
 
-# Requires a notification daemon to be installed
-notify-send -t 10000 "$word -" "$def"
+[[ -z "$def" ]] && notify-send -u critical -t 3000 "❌ No definition found" && exit 0
+
+notify-send -t 10000 "$word definitions:" "$def"
 grep -qxF "$word" "$file" 2>/dev/null || echo "$word" >> "$file"

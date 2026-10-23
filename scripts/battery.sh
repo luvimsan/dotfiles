@@ -18,7 +18,7 @@ if [ "$current_status" != "$prev_status" ]; then
     pkill -SIGRTMIN+10 dwmblocks
 
     # Only notify when change is relevant
-    if [ "$charging_status" != "Charging" ] && [ "$battery_level" -le 30 ]; then
+    if [ "$charging_status" != "Charging" ] && [ "$battery_level" -le 25 ]; then
       notify-send -u critical -i battery-caution "Battery Low" "Plug in your charger" &
       paplay "$HOME/sounds/alert.mp3"
       wait
@@ -28,7 +28,7 @@ fi
 # Output battery icon and status
 if [ "$charging_status" = "Charging" ]; then
     echo "  $battery_level%"
-elif [ "$battery_level" -le 30 ]; then
+elif [ "$battery_level" -le 25 ]; then
     echo " $battery_level%"
 elif [ "$battery_level" -le 50 ]; then
     echo " $battery_level%"

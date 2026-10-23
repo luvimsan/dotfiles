@@ -212,7 +212,7 @@ sanity_check
 # if TS_SEARCH_PATHS is not set use default
 [[ -n "$TS_SEARCH_PATHS" ]] || TS_SEARCH_PATHS=(
     ~/ ~/projects ~/projects/luvimsan ~/projects/opensource ~/projects/tedxninu ~/projects/experiments ~/personal ~/dotfiles
-    ~/dotfiles/suckless ~/thirdparty ~/personal/courses
+    ~/dotfiles/suckless ~/thirdparty ~/personal/courses ~/studying/
     '/media/fun/_luvimsan/2.lev2_sem2' '/media/fun/_luvimsan/')
 
 # Add any extra search paths to the TS_SEARCH_PATHS array

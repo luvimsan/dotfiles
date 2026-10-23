@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-  playerctl pause & slock & doas systemctl suspend
-
-
+playerctl pause &
+betterlockscreen -l blur

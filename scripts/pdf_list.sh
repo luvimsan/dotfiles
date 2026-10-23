@@ -56,7 +56,7 @@ exit_code=$?
 file=$(echo "$menu" | awk -F '\t' -v sel="$selection" '$1==sel {print $2}')
 
 if [ -n "$file" ] && [ -f "$file" ]; then
-    xdotool key super+9
+    xdotool key super+6
 
     count=$(awk -F'|' -v f="$file" '$2==f {print $1}' "$USAGE_FILE")
 

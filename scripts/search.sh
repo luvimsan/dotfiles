@@ -13,14 +13,13 @@ case "$input" in
     mo) input="https://monkeytype.com" ;;
     yt) input="https://youtube.com" ;;
     re) input="https://reddit.com" ;;
-    ch) input="https://chatgpt.com" ;;
     de) input="https://deepseek.com" ;;
     li) input="https://lichess.org" ;;
     x)  input="https://x.com" ;;
-    sc) input="https://365scores.com/ar" ;;
+    so) input="https://sofascore.com" ;;
     wh) input="https://web.whatsapp.com" ;;
     *)
-        if [[ "$input" =~ ^! ]] || [[ "$input" =~ ^[a-zA-Z]+://|localhost|[^[:space:]]+\.[^[:space:]]+ ]]; then
+        if [[ "$input" =~ ^[a-zA-Z]+://|localhost|[^[:space:]]+\.[^[:space:]]+ ]]; then
             if [[ "$input" =~ ^localhost ]]; then
                 input="http://$input"
             elif ! [[ "$input" =~ ^[a-zA-Z]+:// ]]; then
@@ -32,9 +31,9 @@ case "$input" in
                 input="https://www.google.com/search?udm=14&q=${query// /+}"
             elif [[ "$input" == *" d" ]]; then
                 query="${input% d}"
-                input="https://duckduckgo.com/?q=${query// /+}&ia=web"
+                input="https://lite.duckduckgo.com/lite?q=${query// /+}"
             else
-                input="https://lite.duckduckgo.com/lite?q=${input// /+}"
+                input="https://duckduckgo.com/?q=${input// /+}&ia=web"
             fi
         fi
         ;;

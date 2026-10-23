@@ -44,8 +44,8 @@ else
   [[ $input != "Start" ]] && exit 0
   [[ -z $input ]] && exit 0
 
-  record-720
-  # record-1080
+  # record-720
+  record-1080
 
   echo $! > "$PIDFILE"
   sleep 1
